@@ -11,6 +11,8 @@ use base 'Exporter';
 
 our @EXPORT_OK = qw( %runs );
 
+our $VERSION = '1.01';
+
 our %runs = (
     stats => {
         plan => scalar @stats,

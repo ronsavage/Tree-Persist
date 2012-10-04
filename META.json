@@ -42,27 +42,27 @@
    "provides" : {
       "Tree::Persist" : {
          "file" : "lib/Tree/Persist.pm",
-         "version" : "1.00"
+         "version" : "1.01"
       },
       "Tree::Persist::Base" : {
          "file" : "lib/Tree/Persist/Base.pm",
-         "version" : "1.00"
+         "version" : "1.01"
       },
       "Tree::Persist::DB" : {
          "file" : "lib/Tree/Persist/DB.pm",
-         "version" : "1.00"
+         "version" : "1.01"
       },
       "Tree::Persist::DB::SelfReferential" : {
          "file" : "lib/Tree/Persist/DB/SelfReferential.pm",
-         "version" : "1.00"
+         "version" : "1.01"
       },
       "Tree::Persist::File" : {
          "file" : "lib/Tree/Persist/File.pm",
-         "version" : "1.00"
+         "version" : "1.01"
       },
       "Tree::Persist::File::XML" : {
          "file" : "lib/Tree/Persist/File/XML.pm",
-         "version" : "1.00"
+         "version" : "1.01"
       }
    },
    "release_status" : "stable",
@@ -71,5 +71,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "1.00"
+   "version" : "1.01"
 }

@@ -8,7 +8,7 @@ use base qw( Tree::Persist::DB );
 use Scalar::Util qw( blessed refaddr );
 use UNIVERSAL::require;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 my %defaults = (
     id_col        => 'id',

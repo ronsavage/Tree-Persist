@@ -6,7 +6,7 @@ use warnings;
 use Scalar::Util qw( blessed );
 use UNIVERSAL::require;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 sub new {
     my $class = shift;

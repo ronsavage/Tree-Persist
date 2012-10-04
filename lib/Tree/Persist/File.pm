@@ -7,7 +7,7 @@ use base qw( Tree::Persist::Base );
 
 use Scalar::Util qw( blessed );
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 sub _init {
     my $class = shift;
