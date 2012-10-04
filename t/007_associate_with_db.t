@@ -1,6 +1,9 @@
 use strict;
 use warnings;
 
+use File::Spec;
+use File::Temp;
+
 use Test::More;
 
 eval "use DBI";
@@ -14,25 +17,28 @@ my $CLASS = 'Tree::Persist';
 use_ok( $CLASS )
     or Test::More->builder->BAILOUT( "Cannot load $CLASS" );
 
-my $dbh = DBI->connect(
-    'dbi:mysql:tree', 'tree', 'tree', {
-        AutoCommit => 1,
-        RaiseError => 1,
-        PrintError => 0,
-    },
+my($dir)  = File::Temp -> newdir;
+my($file) = File::Spec -> catfile($dir, 'test.sqlite');
+my(@opts) =
+(
+$ENV{DBI_DSN}  || "dbi:SQLite:dbname=$file",
+$ENV{DBI_USER} || '',
+$ENV{DBI_PASS} || '',
 );
 
+my $dbh = DBI->connect(@opts, {RaiseError => 1, PrintError => 0, AutoCommit => 1});
+
 $dbh->do( <<"__END_SQL__" );
-CREATE TEMPORARY TABLE 007_tree (
+CREATE TEMPORARY TABLE tree_007 (
     id INT NOT NULL PRIMARY KEY
-   ,parent_id INT REFERENCES 007_tree (id)
+   ,parent_id INT REFERENCES tree_007 (id)
    ,class VARCHAR(255) NOT NULL
    ,value VARCHAR(255)
 )
 __END_SQL__
 
 $dbh->do( <<"__END_SQL__" );
-INSERT INTO 007_tree
+INSERT INTO tree_007
     ( id, parent_id, value, class )
 VALUES
     ( 1, NULL, "root", "Tree" )
@@ -41,7 +47,7 @@ __END_SQL__
 sub get_values {
     my $dbh = shift;
 
-    my $sth = $dbh->prepare_cached( "SELECT * FROM 007_tree ORDER BY id" );
+    my $sth = $dbh->prepare_cached( "SELECT * FROM tree_007 ORDER BY id" );
     $sth->execute;
     return $sth->fetchall_arrayref( {} );
 }
@@ -50,7 +56,7 @@ sub get_values {
     my $persist = $CLASS->connect({
         type  => 'DB',
         dbh   => $dbh,
-        table => '007_tree',
+        table => 'tree_007',
         id    => 1,
         class_col => 'class',
     });
@@ -160,7 +166,7 @@ sub get_values {
     my $persist = $CLASS->connect({
         type  => 'DB',
         dbh   => $dbh,
-        table => '007_tree',
+        table => 'tree_007',
         id    => 3,
     });
 
