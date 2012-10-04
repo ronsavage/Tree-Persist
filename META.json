@@ -1,0 +1,75 @@
+{
+   "abstract" : "A transparent persistence layer for Tree and its children",
+   "author" : [
+      "unknown"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120630",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Tree-Persist",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "File::Copy" : "0.01",
+            "File::Spec" : "0.01",
+            "Scalar::Util" : "1.10",
+            "Test::File" : "1.10",
+            "Test::File::Cleaner" : "0.02",
+            "Test::File::Contents" : "0.02",
+            "Test::More" : "0.47"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.4"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Scalar::Util" : "1.10",
+            "Tree" : "1.00",
+            "UNIVERSAL::require" : "0.10",
+            "perl" : "v5.6.0"
+         }
+      }
+   },
+   "provides" : {
+      "Tree::Persist" : {
+         "file" : "lib/Tree/Persist.pm",
+         "version" : "1.00"
+      },
+      "Tree::Persist::Base" : {
+         "file" : "lib/Tree/Persist/Base.pm",
+         "version" : "1.00"
+      },
+      "Tree::Persist::DB" : {
+         "file" : "lib/Tree/Persist/DB.pm",
+         "version" : "1.00"
+      },
+      "Tree::Persist::DB::SelfReferential" : {
+         "file" : "lib/Tree/Persist/DB/SelfReferential.pm",
+         "version" : "1.00"
+      },
+      "Tree::Persist::File" : {
+         "file" : "lib/Tree/Persist/File.pm",
+         "version" : "1.00"
+      },
+      "Tree::Persist::File::XML" : {
+         "file" : "lib/Tree/Persist/File/XML.pm",
+         "version" : "1.00"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "1.00"
+}
