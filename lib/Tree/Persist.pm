@@ -49,7 +49,7 @@ __END__
 
 =head1 NAME
 
-Tree::Persist
+Tree::Persist - A transparent persistence layer for Tree and its children
 
 =head1 SYNOPSIS
 
@@ -178,6 +178,6 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself. 
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut

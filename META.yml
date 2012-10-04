@@ -1,7 +1,8 @@
 ---
 abstract: 'A transparent persistence layer for Tree and its children'
 author:
-  - unknown
+  - 'Rob Kinyon E<lt>rob.kinyon@iinteractive.comE<gt>'
+  - 'Stevan Little E<lt>stevan.little@iinteractive.comE<gt>'
 build_requires:
   File::Copy: 0.01
   File::Spec: 0.01
