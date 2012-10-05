@@ -36,7 +36,6 @@ Module::Build -> new
 		'Test::File::Cleaner'  => '0.02',
 		'Test::File::Contents' => '0.02',
 	},
-	create_makefile_pl   => 'traditional',
 	recursive_test_files => 1,
 	add_to_cleanup       =>
 	[
