@@ -4,8 +4,8 @@ Revision history for Perl distribution Tree::Persist
 	- Ron Savage is now co-maint.
 	- Re-write MySQL-specific code (in the tests).
 	- Rename Changes to CHANGES.
-	- Use ini.report.pl (shipped with Module::Metadata::Changes) to add Changelog.ini to the distro.
 	- Reformat the date below.
+	- Use ini.report.pl (shipped with Module::Metadata::Changes) to add Changelog.ini to the distro.
 
 0.99  Mon Oct 31 10:30:00 2005
   - Split out from Forest
