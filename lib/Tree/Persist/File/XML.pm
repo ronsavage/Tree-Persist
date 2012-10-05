@@ -87,7 +87,7 @@ __END__
 
 =head1 NAME
 
-Tree::Persist::File::XML - a handler for Tree persistence
+Tree::Persist::File::XML - A handler for Tree persistence
 
 =head1 SYNOPSIS
 
@@ -97,6 +97,10 @@ Please see L<Tree::Persist> for how to use this module.
 
 This module is a plugin for L<Tree::Persist> to store a L<Tree> to an XML
 file.
+
+=head1 Methods
+
+Tree::Persist::DB::SelfReferential is a sub-class of L<Tree::Persist::File>, and inherits all its methods.
 
 =head1 PARAMETERS
 
@@ -146,6 +150,6 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself. 
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut

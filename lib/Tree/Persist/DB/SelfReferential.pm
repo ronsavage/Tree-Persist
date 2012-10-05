@@ -247,7 +247,7 @@ __END__
 
 =head1 NAME
 
-Tree::Persist::DB::SelfReferential - a handler for Tree persistence
+Tree::Persist::DB::SelfReferential - A handler for Tree persistence
 
 =head1 SYNOPSIS
 
@@ -263,10 +263,14 @@ parent row).
 This is the simplest way to store a tree datastructure in a database, but it
 has performance penalties.
 
+=head1 Methods
+
+Tree::Persist::DB::SelfReferential is a sub-class of L<Tree::Persist::DB>, and inherits all its methods.
+
 =head1 PARAMETERS
 
 In addition to any parameters required by its parent L<Tree::Persist::DB>, the following
-parameters are required by connect():
+parameters are used by connect():
 
 =over 4
 
@@ -300,10 +304,6 @@ will be used.
 
 =item *
 
-To date, only MySQL has been tested.
-
-=item *
-
 Provide for a way to default the class to 'Tree' if no class_col is provided.
 Also, allow for the classname to be passed into the constructor.
 
@@ -331,6 +331,6 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself. 
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut

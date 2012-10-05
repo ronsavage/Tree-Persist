@@ -6,7 +6,7 @@ Revision history for Perl distribution Tree::Persist
 	- Rename Changes to CHANGES.
 	- Reformat the date below.
 	- Use ini.report.pl (shipped with Module::Metadata::Changes) to add Changelog.ini to the distro.
-	- Clean up PODs, slightly.
+	- Clean up POD.
 	- Re-work Makefile.PL rather than have Build.PL generate it.
 
 0.99  Mon Oct 31 10:30:00 2005

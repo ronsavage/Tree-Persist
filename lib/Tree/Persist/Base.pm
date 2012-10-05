@@ -174,14 +174,14 @@ datastore specifies otherwise. It will default to 'Tree'.
 
 =head1 METHODS
 
-=over 4
-
-=item * new({ %opts })
+=head2 new({ %opts })
 
 This is the constructor. C<%opts> is the set of parameters described in
 L<Tree::Persist>.
 
-=item * autocommit( [$autocommit] )
+=head2 autocommit( [$autocommit] )
+
+Here, [] indicate an optional parameter.
 
 If called without any parameters, this will return the current autocommit
 setting. If called with a parameter, it will set the autocommit flag to the
@@ -194,21 +194,19 @@ NOTE: If you turn autocommit off, then back on, it will B<not> issue a commit
 until the next change occurs. At that time, it will commit all changes that
 have occurred since the last commit.
 
-=item * commit()
+=head2 commit()
 
 If any changes are queued up, this will write them to the database. If there
 are no changes, this is a no-op.
 
-=item * rollback
+=head2 rollback()
 
 If there are any changes queued up, this will discard those changes and reload
 the tree from the datastore. If there are no changes, this is a no-op.
 
-=item * tree
+=head2 tree()
 
 This will return the tree that is being persisted.
-
-=back
 
 =head1 CODE COVERAGE
 
@@ -232,6 +230,6 @@ Copyright 2004, 2005 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself. 
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut

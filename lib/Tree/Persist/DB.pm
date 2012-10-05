@@ -24,7 +24,7 @@ __END__
 
 =head1 NAME
 
-Tree::Persist::DB - the base class for DB plugins for Tree persistence
+Tree::Persist::DB - The base class for DB plugins for Tree persistence
 
 =head1 DESCRIPTION
 
