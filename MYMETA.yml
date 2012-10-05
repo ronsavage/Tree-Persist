@@ -5,13 +5,7 @@ author:
   - 'Stevan Little E<lt>stevan.little@iinteractive.comE<gt>'
   - 'Co-maintenance since V 1.01 is by Ron Savage <rsavage@cpan.org>.'
 build_requires:
-  File::Copy: 0.01
-  File::Spec: 0.01
-  Scalar::Util: 1.10
-  Test::File: 1.10
-  Test::File::Cleaner: 0.02
-  Test::File::Contents: 0.02
-  Test::More: 0.47
+  ExtUtils::MakeMaker: 0
 configure_requires:
   Module::Build: 0.40
 dynamic_config: 0
@@ -41,10 +35,15 @@ provides:
     file: lib/Tree/Persist/File/XML.pm
     version: 1.01
 requires:
+  File::Copy: 0.01
+  File::Spec: 0.01
   Scalar::Util: 1.10
+  Test::File: 1.10
+  Test::File::Cleaner: 0.02
+  Test::File::Contents: 0.02
+  Test::More: 0.47
   Tree: 1.00
   UNIVERSAL::require: 0.10
-  perl: v5.6.0
 resources:
   license: http://dev.perl.org/licenses/
 version: 1.01
