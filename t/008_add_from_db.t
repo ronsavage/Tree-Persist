@@ -18,10 +18,9 @@ use Test::More;
 sub report_tree
 {
 	my($depth, $tree, $stack) = @_;
-	my(@kids) = $tree -> children;
 
 	push @$stack, ':--' x $depth . $tree -> value;
-	push @$stack, map{@{report_tree($depth + 1, $_, [])} } @kids;
+	push @$stack, map{@{report_tree($depth + 1, $_, [])} } $tree -> children;
 
 	return $stack;
 
@@ -141,7 +140,7 @@ A
 :--:--D
 :--E
 EOS
-$expected   = [split(/\n/, $expected)];
+$expected = [split(/\n/, $expected)];
 $result   = report_tree(0, $tree_6, []);
 
 is_deeply($expected, $result, 'Added pre-existing tree into tree from db, at index 1');
