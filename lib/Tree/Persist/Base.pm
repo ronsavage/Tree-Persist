@@ -102,10 +102,23 @@ sub _install_handlers {
     return $self;
 }
 
+sub _strip_options {
+    my $self = shift;
+    my ($params) = @_;
+
+    if ( @$params && !blessed($params->[0]) && ref($params->[0]) eq 'HASH' ) {
+        return shift @$params;
+    }
+    else {
+        return {};
+    }
+}
+
 sub _add_child_handler {
     my $self = shift;
     return sub {
         my ($parent, @children) = @_;
+        my $options = $self->_strip_options( \@children );
         push @{$self->{_changes}}, {
             action => 'add_child',
             parent => $parent,
@@ -119,6 +132,7 @@ sub _remove_child_handler {
     my $self = shift;
     return sub {
         my ($parent, @children) = @_;
+        my $options = $self->_strip_options( \@children );
         push @{$self->{_changes}}, {
             action => 'remove_child',
             parent => $parent,

@@ -19,6 +19,7 @@ t/004_autocommit.t
 t/005_load_from_db.t
 t/006_save_to_db.t
 t/007_associate_with_db.t
+t/008_add_from_db.t
 t/998_pod.t
 t/999_pod_coverage.t
 t/datafiles/tree1.xml

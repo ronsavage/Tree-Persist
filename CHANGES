@@ -8,6 +8,12 @@ Revision history for Perl distribution Tree::Persist
 	- Use ini.report.pl (shipped with Module::Metadata::Changes) to add Changelog.ini to the distro.
 	- Clean up POD.
 	- Re-work Makefile.PL rather than have Build.PL generate it.
+	- Add code to File::Temp -> newdir(...) in tests to help run under BSD-based systems.
+	- Copy sub _strip_options() from Tree and add to Tree::Persist::Base. Then call it from within the
+		subs returned from _add_child_handler() and _remove_child_handler().
+		This resolves RT#61740, thereby allowing trees to be read in from a db and inserted into another
+		tree, and visa versa, i.e. allow trees to be inserted into a tree read in from a db.
+	- Add t/008_add_from_db.t to test this patch.
 
 0.99  Mon Oct 31 10:30:00 2005
   - Split out from Forest

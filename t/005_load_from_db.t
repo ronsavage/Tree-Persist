@@ -17,7 +17,9 @@ my $CLASS = 'Tree::Persist';
 use_ok( $CLASS )
     or Test::More->builder->BAILOUT( "Cannot load $CLASS" );
 
-my($dir)  = File::Temp -> newdir;
+# The EXLOCK option is for BSD-based systems.
+
+my($dir)  = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
 my($file) = File::Spec -> catfile($dir, 'test.sqlite');
 my(@opts) =
 (
