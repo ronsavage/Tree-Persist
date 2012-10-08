@@ -122,6 +122,7 @@ sub _add_child_handler {
         push @{$self->{_changes}}, {
             action => 'add_child',
             parent => $parent,
+            options => $options,
             children => [ @children ],
         };
         $self->commit if $self->autocommit;
@@ -136,6 +137,7 @@ sub _remove_child_handler {
         push @{$self->{_changes}}, {
             action => 'remove_child',
             parent => $parent,
+            options => $options,
             children => [ @children ],
         };
         $self->commit if $self->autocommit;
