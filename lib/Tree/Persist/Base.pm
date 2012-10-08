@@ -167,6 +167,16 @@ Tree::Persist::Base - The base class for the Tree persistence plugin hierarchy
 
 This provides a useful baseclass for all the L<Tree::Persist> plugins.
 
+Existing plugins are:
+
+=over 4
+
+=item * L<Tree::Persist::DB::SelfReferential>
+
+=item * L<Tree::Persist::File::XML>
+
+=back
+
 =head1 PARAMETERS
 
 These are the parameters provided for by this class. These are in addition to
@@ -226,7 +236,7 @@ This will return the tree that is being persisted.
 
 Please see the relevant section of L<Tree::Persist>.
 
-=head1 SUPPORSUPPORT
+=head1 SUPPORT
 
 Please see the relevant section of L<Tree::Persist>.
 

@@ -53,6 +53,10 @@ This is the table name that contains the tree. This is required.
 
 =back
 
+=head1 METHODS
+
+Tree::Persist::DB is a sub-class of L<Tree::Persist::Base>, and inherits all its methods.
+
 =head1 TODO
 
 =over 4

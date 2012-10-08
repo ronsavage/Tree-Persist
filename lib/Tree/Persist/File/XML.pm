@@ -98,14 +98,14 @@ Please see L<Tree::Persist> for how to use this module.
 This module is a plugin for L<Tree::Persist> to store a L<Tree> to an XML
 file.
 
-=head1 Methods
-
-Tree::Persist::DB::SelfReferential is a sub-class of L<Tree::Persist::File>, and inherits all its methods.
-
 =head1 PARAMETERS
 
 This class requires no additional parameters than are specified by its parent,
 L<Tree::Persist::File>.
+
+=head1 METHODS
+
+Tree::Persist::File::XML is a sub-class of L<Tree::Persist::File>, and inherits all its methods.
 
 =head1 XML SPEC
 

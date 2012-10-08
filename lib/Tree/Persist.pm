@@ -91,45 +91,39 @@ C<connect()> and C<create_datastore()>.
 
 =head2 Class Methods
 
-=over 4
-
-=item * B<connect({ %opts })>
+=head2 connect({ %opts })
 
 This will return an object that will provide persistence. It will B<not> be an
 object that inherits from Tree::Persist.
 
-=item * B<create_datastore({ %opts })>
+=head2 create_datastore({ %opts })
 
 This will create a new datastore for a tree. It will then return the object
 used to create that datastore, as if you had called L<connect()>.
-
-=back
 
 =head2 Behaviors
 
 These behaviors apply to the object returned from C<connect()> or
 C<create_datastore()>.
 
-=over 4
-
-=item * B<autocommit()>
+=head2 autocommit()
 
 This is a boolean option that determines whether or not changes to the tree
 will committed to the datastore immediately or not. The default is true. This
 will return the current setting.
 
-=item * B<tree()>
+=head2 tree()
 
 This returns the tree.
 
-=item * B<commit()>
+=head2 commit()
 
 This will save all changes made to the tree associated with this Tree::Persist
 object.
 
 This is a no-op if autocommit is true.
 
-=item * B<rollback()>
+=head2 rollback()
 
 This will undo all changes made to the tree since the last commit. If there
 were any changes, it will reload the tree from the datastore.
@@ -140,7 +134,15 @@ B<NOTE>: Any references to any of the nodes in the tree as it was before
 rollback() is called will B<not> refer to the same node of C<$persistE<gt>tree>
 after rollback().
 
-=back
+=head1 FAQ
+
+=head2 How do I control the database used for testing?
+
+The tests default to using $ENV{DBI_DSN}, $ENV{DBI_USER} and $ENV{DBI_PASS}, so you can set
+them to anything.
+
+If $ENV{DBI_DSN} is empty, the code uses DBD::SQLite for the database. In this case, a temporary
+directory is used for each test.
 
 =head1 CODE COVERAGE
 

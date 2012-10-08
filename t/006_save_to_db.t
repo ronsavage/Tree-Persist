@@ -11,10 +11,20 @@ use Test::More;
 eval "use DBI";
 plan skip_all => "DBI required for testing DB plugin" if $@;
 
+# The EXLOCK option is for BSD-based systems.
+
+my($dir);
+my($file);
+
 if (! $ENV{DBI_DSN})
 {
 	eval "use DBD::SQLite";
 	plan skip_all => "DBD::SQLite required for testing DB plugin" if $@;
+
+	$dir           = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
+	$file          = File::Spec -> catfile($dir, 'test.sqlite');
+	$ENV{DBI_DSN}  = "dbi:SQLite:dbname=$file";
+	$ENV{DBI_USER} = $ENV{DBI_PASS} = '';
 }
 
 #use t::tests qw( %runs );
@@ -29,16 +39,8 @@ use_ok( 'Tree' );
 
 # The EXLOCK option is for BSD-based systems.
 
-my($dir)  = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
-my($file) = File::Spec -> catfile($dir, 'test.sqlite');
-my(@opts) =
-(
-$ENV{DBI_DSN}  || "dbi:SQLite:dbname=$file",
-$ENV{DBI_USER} || '',
-$ENV{DBI_PASS} || '',
-);
-
-my $dbh = DBI->connect(@opts, {RaiseError => 1, PrintError => 0, AutoCommit => 1});
+my(@opts) = ($ENV{DBI_DSN}, $ENV{DBI_USER}, $ENV{DBI_PASS});
+my $dbh   = DBI->connect(@opts, {RaiseError => 1, PrintError => 0, AutoCommit => 1});
 
 $dbh->do( <<"__END_SQL__" );
 CREATE TEMPORARY TABLE tree_006 (

@@ -64,6 +64,10 @@ This is the filename that will be used as the datastore.
 
 =back
 
+=head1 METHODS
+
+Tree::Persist::File is a sub-class of L<Tree::Persist::Base>, and inherits all its methods.
+
 =head1 TODO
 
 =over 4

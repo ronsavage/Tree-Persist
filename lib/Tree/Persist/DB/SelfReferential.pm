@@ -263,10 +263,6 @@ parent row).
 This is the simplest way to store a tree datastructure in a database, but it
 has performance penalties.
 
-=head1 Methods
-
-Tree::Persist::DB::SelfReferential is a sub-class of L<Tree::Persist::DB>, and inherits all its methods.
-
 =head1 PARAMETERS
 
 In addition to any parameters required by its parent L<Tree::Persist::DB>, the following
@@ -297,6 +293,10 @@ This is the column name for the class field. If unset, the class parameter
 will be used.
 
 =back
+
+=head1 Methods
+
+Tree::Persist::DB::SelfReferential is a sub-class of L<Tree::Persist::DB>, and inherits all its methods.
 
 =head1 TODO
 
