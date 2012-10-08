@@ -147,7 +147,7 @@ directory is used for each test.
 =head1 CODE COVERAGE
 
 We use L<Devel::Cover> to test the code coverage of our tests. Below is the
-L<Devel::Cover> report on this module's test suite.
+L<Devel::Cover> report on this module's V 0.99 test suite.
 
   ---------------------------- ------ ------ ------ ------ ------ ------ ------
   File                           stmt   bran   cond    sub    pod   time  total
