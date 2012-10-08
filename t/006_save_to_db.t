@@ -6,8 +6,16 @@ use File::Temp;
 
 use Test::More;
 
+# ---------------------------------------------
+
 eval "use DBI";
 plan skip_all => "DBI required for testing DB plugin" if $@;
+
+if (! $ENV{DBI_DSN})
+{
+	eval "use DBD::SQLite";
+	plan skip_all => "DBD::SQLite required for testing DB plugin" if $@;
+}
 
 #use t::tests qw( %runs );
 

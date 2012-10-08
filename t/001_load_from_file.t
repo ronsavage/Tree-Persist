@@ -4,6 +4,8 @@ use warnings;
 use File::Spec::Functions qw( catfile );
 use Test::More;
 
+# ---------------------------------------------
+
 eval "use XML::Parser";
 plan skip_all => "XML::Parser required for testing File plugin" if $@;
 

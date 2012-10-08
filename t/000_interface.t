@@ -4,6 +4,8 @@ use warnings;
 use File::Spec::Functions qw( catfile );
 use Test::More tests => 3;
 
+# ---------------------------------------------
+
 my $CLASS = 'Tree::Persist';
 use_ok( $CLASS )
     or Test::More->builder->BAILOUT( "Cannot load $CLASS" );

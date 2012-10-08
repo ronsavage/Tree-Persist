@@ -3,6 +3,8 @@ use warnings;
 
 use Test::More;
 
+# ---------------------------------------------
+
 eval "use XML::Parser";
 plan skip_all => "XML::Parser required for testing File plugin" if $@;
 
@@ -30,7 +32,7 @@ my $cleaner = Test::File::Cleaner->new( $dirname );
 
     cp( catfile( $dirname, 'tree1.xml' ), $filename );
 
-    file_exists_ok( $filename, 'Tree1 file exists' ); 
+    file_exists_ok( $filename, 'Tree1 file exists' );
 
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
 <node class="Tree" value="root">
@@ -51,7 +53,7 @@ __END_FILE__
     my $child = Tree->new( 'child' );
     $tree->add_child( $child );
 
-    file_exists_ok( $filename, 'Tree1 file still exists' ); 
+    file_exists_ok( $filename, 'Tree1 file still exists' );
 
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
 <node class="Tree" value="root">

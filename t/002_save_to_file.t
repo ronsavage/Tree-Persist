@@ -3,6 +3,8 @@ use warnings;
 
 use Test::More;
 
+# ---------------------------------------------
+
 eval "use XML::Parser";
 plan skip_all => "XML::Parser required for testing File plugin" if $@;
 
@@ -26,7 +28,7 @@ my $cleaner = Test::File::Cleaner->new( $dirname );
 
 {
     my $filename = catfile( $dirname, 'save1.xml' );
-    file_not_exists_ok( $filename, "Tree1 file doesn't exist yet" ); 
+    file_not_exists_ok( $filename, "Tree1 file doesn't exist yet" );
 
     my $tree = Tree->new( 'root' );
 
@@ -35,7 +37,7 @@ my $cleaner = Test::File::Cleaner->new( $dirname );
         filename => $filename,
     });
 
-    file_exists_ok( $filename, 'Tree1 file exists' ); 
+    file_exists_ok( $filename, 'Tree1 file exists' );
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
 <node class="Tree" value="root">
 </node>
@@ -45,7 +47,7 @@ __END_FILE__
 
 {
     my $filename = catfile( $dirname, 'save2.xml' );
-    file_not_exists_ok( $filename, "Tree2 file doesn't exist yet" ); 
+    file_not_exists_ok( $filename, "Tree2 file doesn't exist yet" );
 
     my $tree = Tree->new( 'A' )->add_child(
         Tree->new( 'B' ),
@@ -60,7 +62,7 @@ __END_FILE__
         filename => $filename,
     });
 
-    file_exists_ok( $filename, 'Tree2 file exists' ); 
+    file_exists_ok( $filename, 'Tree2 file exists' );
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
 <node class="Tree" value="A">
     <node class="Tree" value="B">
@@ -78,7 +80,7 @@ __END_FILE__
 
 {
     my $filename = catfile( $dirname, 'save3.xml' );
-    file_not_exists_ok( $filename, "Tree3 file doesn't exist yet" ); 
+    file_not_exists_ok( $filename, "Tree3 file doesn't exist yet" );
 
     my $tree = Tree->new( 'A' )->add_child(
         Tree->new( 'B' ),
@@ -93,7 +95,7 @@ __END_FILE__
         tree => $tree,
     });
 
-    file_exists_ok( $filename, 'Tree3 file exists' ); 
+    file_exists_ok( $filename, 'Tree3 file exists' );
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
 <node class="Tree" value="A">
     <node class="Tree" value="B">
