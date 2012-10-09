@@ -155,7 +155,7 @@ L</create_datastore({%opts})>.
 
 =head2 autocommit()
 
-This is a boolean option that determines whether or not changes to the tree
+This is a Boolean option that determines whether or not changes to the tree
 will committed to the datastore immediately or not. The default is true. This
 will return the current setting.
 
@@ -178,7 +178,7 @@ were any changes, it will reload the tree from the datastore.
 This is a no-op if autocommit is true.
 
 B<NOTE>: Any references to any of the nodes in the tree as it was before
-C<rollback()> is called will B<not> refer to the same node of C<$persist-E<gt>tree>
+C<rollback()> is called will B<not> refer to the same node of C<<< $persist -> tree >>>
 after C<rollback()>.
 
 =head1 FAQ
