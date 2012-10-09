@@ -49,8 +49,10 @@ provides File plugins for Tree persistence.
 
 =head1 PARAMETERS
 
+Parameters are used in the call to L<Tree::Persist/connect({%opts})> or L<Tree::Persist/create_datastore({%opts})>.
+
 In addition to any parameters required by its parent L<Tree::Persist::Base>, the following
-parameters are required by connect():
+parameters are used by C<connect()> or C<create_datastore()>:
 
 =over 4
 

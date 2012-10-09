@@ -1,0 +1,10 @@
+<node class="Tree" value="A">
+    <node class="Tree" value="B">
+    </node>
+    <node class="Tree" value="C">
+        <node class="Tree" value="D">
+        </node>
+    </node>
+    <node class="Tree" value="E">
+    </node>
+</node>

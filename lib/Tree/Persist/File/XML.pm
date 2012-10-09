@@ -11,75 +11,79 @@ use XML::Parser;
 
 our $VERSION = '1.01';
 
+# ----------------------------------------------
+
 sub _reload {
-    my $self = shift;
+	my $self = shift;
 
-    my $linenum = 0;
-    my @stack;
-    my $tree;
-    my $parser = XML::Parser->new(
-        Handlers => {
-            Start => sub {
-                shift;
-                my ($name, %args) = @_;
+	my $linenum = 0;
+	my @stack;
+	my $tree;
+	my $parser = XML::Parser->new(
+		Handlers => {
+			Start => sub {
+				shift;
+				my ($name, %args) = @_;
 
-                my $class = $args{class}
-                    ? $args{class}
-                    : $self->{_class};
-                $class->require or die $UNIVERSAL::require::ERROR;
+				my $class = $args{class}
+					? $args{class}
+					: $self->{_class};
+				$class->require or die $UNIVERSAL::require::ERROR;
 
-                my $node = $class->new( $args{value} );
+				my $node = $class->new( $args{value} );
 
-                if ( @stack ) {
-                    $stack[-1]->add_child( $node );
-                }
-                else {
-                    $tree = $node;
-                }
+				if ( @stack ) {
+					$stack[-1]->add_child( $node );
+				}
+				else {
+					$tree = $node;
+				}
 
-                push @stack, $node;
-            },
-            End => sub {
-                $linenum++;
-                pop @stack;
-            },
-        },
-    );
+				push @stack, $node;
+			},
+			End => sub {
+				$linenum++;
+				pop @stack;
+			},
+		},
+	);
 
-    $parser->parsefile( $self->{_filename} );
+	$parser->parsefile( $self->{_filename} );
 
-    $self->_set_tree( $tree );
+	$self->_set_tree( $tree );
 
-    return $self;
+	return $self;
 }
 
 my $pad = ' ' x 4;
 
 sub _build_string {
-    my $self = shift;
-    my ($tree) = @_;
+	my $self = shift;
+	my ($tree) = @_;
+	my(%encode) = ('<' => '&lt;', '>' => '&gt;', '&' => '&amp;', "'" => '&apos;', '"' => '&quot;');
+	my $str = '';
 
-    my $str = '';
+	my $curr_depth = $tree->depth;
+	my(@char);
+	my @closer;
 
-    my $curr_depth = $tree->depth;
-    my @closer;
-    foreach my $node ( $tree->traverse ) {
-        my $new_depth = $node->depth;
-        $str .= pop(@closer) while @closer && $curr_depth-- >= $new_depth;
+	foreach my $node ( $tree->traverse ) {
+		my $new_depth = $node->depth;
+		$str .= pop(@closer) while @closer && $curr_depth-- >= $new_depth;
 
-        $curr_depth = $new_depth;
-        $str .= ($pad x $curr_depth)
-                . '<node class="'
-                . blessed($node)
-                . '" value="'
-                #XXX Need to encode the value.
-                . $node->value
-                . '">' . $/;
-        push @closer, ($pad x $curr_depth) . "</node>\n";
-    }
-    $str .= pop(@closer) while @closer;
+		$curr_depth = $new_depth;
+		@char = map{$encode{$_} ? $encode{$_} : $_} split(//, $node -> value);
+		$str .= ($pad x $curr_depth)
+				. '<node class="'
+				. blessed($node)
+				. '" value="'
+				. join('', @char)
+				. '">' . $/;
+		push @closer, ($pad x $curr_depth) . "</node>\n";
+	}
+	$str .= pop(@closer) while @closer;
 
-    return $str;
+	return $str;
 }
 
 1;
@@ -100,7 +104,9 @@ file.
 
 =head1 PARAMETERS
 
-This class requires no additional parameters than are specified by its parent,
+Parameters are used in the call to L<Tree::Persist/connect({%opts})> or L<Tree::Persist/create_datastore({%opts})>.
+
+This class requires no additional parameters beyond those specified by its parent,
 L<Tree::Persist::File>.
 
 =head1 METHODS

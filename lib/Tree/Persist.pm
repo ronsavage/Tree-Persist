@@ -53,15 +53,44 @@ Tree::Persist - A transparent persistence layer for Tree and its children
 
 =head1 SYNOPSIS
 
-  my $persist = Tree::Persist->new({
-      ...
-  });
+Create a tree:
 
-  my $tree = $persist->tree.
+	my($tree_1) = Tree -> new('A') -> add_child
+	(
+		Tree -> new('B'),
+		Tree -> new('C') -> add_child
+		(
+			Tree -> new('D'),
+		),
+		Tree -> new('E'),
+	);
 
-  $persist->autocommit( 0 );
+Create a datastore:
 
-  $tree->set_value( 'foo' );
+	my($writer) = Tree::Persist -> create_datastore
+	({
+		filename => 'scripts/store.xml',
+		tree     => $tree_1,
+		type     => 'File',
+	});
+
+Retrieve a tree:
+
+	my($reader) = Tree::Persist -> connect
+	({
+		filename => 'scripts/store.xml',
+		type     => 'File',
+	});
+
+	my($tree_2) = $reader -> tree;
+
+See scripts/xml.demo.pl and its storage file scripts/store.xml. See also t/008_add_from_db.t.
+
+General usage of methods:
+
+	$store -> autocommit(0);
+
+	$tree -> set_value('foo');
 
 =head1 DESCRIPTION
 
@@ -89,22 +118,26 @@ C<connect()> and C<create_datastore()>.
 
 =head1 METHODS
 
-=head2 Class Methods
+=head3 Class Methods
 
-=head2 connect({ %opts })
+=head2 connect({%opts})
 
 This will return an object that will provide persistence. It will B<not> be an
 object that inherits from Tree::Persist.
 
-=head2 create_datastore({ %opts })
+%opts is described in L<Tree::Persist::DB::SelfReferential/PARAMETERS> and L<Tree::Persist::File::XML/PARAMETERS>.
+
+=head2 create_datastore({%opts})
 
 This will create a new datastore for a tree. It will then return the object
-used to create that datastore, as if you had called L<connect()>.
+used to create that datastore, as if you had called L</connect({%opts})>.
 
-=head2 Behaviors
+%opts is described in L<Tree::Persist::DB::SelfReferential/PARAMETERS> and L<Tree::Persist::File::XML/PARAMETERS>.
 
-These behaviors apply to the object returned from C<connect()> or
-C<create_datastore()>.
+=head3 Behaviors
+
+These behaviors apply to the object returned from L</connect({%opts})> or
+L</create_datastore({%opts})>.
 
 =head2 autocommit()
 
@@ -131,8 +164,8 @@ were any changes, it will reload the tree from the datastore.
 This is a no-op if autocommit is true.
 
 B<NOTE>: Any references to any of the nodes in the tree as it was before
-rollback() is called will B<not> refer to the same node of C<$persistE<gt>tree>
-after rollback().
+C<rollback()> is called will B<not> refer to the same node of C<$persist-E<gt>tree>
+after C<rollback()>.
 
 =head1 FAQ
 

@@ -181,15 +181,17 @@ Existing plugins are:
 
 =head1 PARAMETERS
 
+Parameters are used in the call to L<Tree::Persist/connect({%opts})> or L<Tree::Persist/create_datastore({%opts})>.
+
 These are the parameters provided for by this class. These are in addition to
-whatever parameters the child class may use.
+whatever parameters sub-classes may use.
 
 =over 4
 
 =item * autocommit (optional)
 
 This will be the initial setting for the autocommit value. (Please see
-C<autocommit()> for more info.)
+L</autocommit([$autocommit])> for more info.)
 
 =item * class (optional)
 
@@ -200,12 +202,12 @@ datastore specifies otherwise. It will default to 'Tree'.
 
 =head1 METHODS
 
-=head2 new({ %opts })
+=head2 new({%opts})
 
-This is the constructor. C<%opts> is the set of parameters described in
-L<Tree::Persist>.
+This is the constructor. C<%opts> is the set of parameters as described above.
+Sub-classes may add their own optional or mandatory parameters.
 
-=head2 autocommit( [$autocommit] )
+=head2 autocommit([$autocommit])
 
 Here, [] indicate an optional parameter.
 
