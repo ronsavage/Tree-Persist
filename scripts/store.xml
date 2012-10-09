@@ -1,7 +1,7 @@
 <node class="Tree" value="A">
     <node class="Tree" value="B">
     </node>
-    <node class="Tree" value="C">
+    <node class="Tree" value="&apos;C&apos;">
         <node class="Tree" value="&lt;D&gt;">
         </node>
     </node>
