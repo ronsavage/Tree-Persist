@@ -325,8 +325,7 @@ This is the column name for the value field. It defaults to "value".
 
 =item * class_col (optional)
 
-This is the column name for the class field. If unset, the class parameter
-will be used.
+This is the column name for the class field.
 
 =back
 
