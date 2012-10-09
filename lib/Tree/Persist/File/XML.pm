@@ -132,6 +132,8 @@ They are decoded when L<XML::Parser> reads the value back in.
 
 See L<http://www.w3.org/standards/xml/core> for details.
 
+See also scripts/xml.demo.pl and scripts/store.xml.
+
 =head1 CODE COVERAGE
 
 Please see the relevant section of L<Tree::Persist>.
