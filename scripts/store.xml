@@ -5,6 +5,6 @@
         <node class="Tree" value="&lt;D&gt;">
         </node>
     </node>
-    <node class="Tree" value="E">
+    <node class="Tree" value="&gt;&gt;&gt;E&lt;&lt;&lt;">
     </node>
 </node>

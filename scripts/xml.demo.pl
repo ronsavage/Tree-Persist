@@ -30,7 +30,7 @@ my($tree_1) = Tree -> new('A') -> add_child
 	(
 		Tree -> new('<D>'),
 	),
-	Tree -> new('E'),
+	Tree -> new('>>>E<<<'),
 );
 
 print "Tree before writing: \n";
