@@ -1,5 +1,5 @@
 <node class="Tree" value="A">
-    <node class="Tree" value="B">
+    <node class="Tree" value="&quot;B&quot;">
     </node>
     <node class="Tree" value="&apos;C&apos;">
         <node class="Tree" value="&lt;D&gt;">
