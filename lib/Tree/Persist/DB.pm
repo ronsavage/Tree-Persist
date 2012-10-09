@@ -7,19 +7,24 @@ use base qw( Tree::Persist::Base );
 
 our $VERSION = '1.01';
 
-sub _init {
-    my $class = shift;
-    my ($opts) = @_;
+# ----------------------------------------------
 
-    my $self = $class->SUPER::_init( $opts );
+sub _init
+{
+	my($class)      = shift;
+	my($opts)       = @_;
+	my($self)       = $class -> SUPER::_init( $opts );
+	$self->{_dbh}   = $opts->{dbh};
+	$self->{_table} = $opts->{table};
 
-    $self->{_dbh} = $opts->{dbh};
-    $self->{_table} = $opts->{table};
+	return $self;
 
-    return $self;
-}
+} # End of _init.
+
+# ----------------------------------------------
 
 1;
+
 __END__
 
 =head1 NAME

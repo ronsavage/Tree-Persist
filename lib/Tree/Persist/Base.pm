@@ -8,157 +8,236 @@ use UNIVERSAL::require;
 
 our $VERSION = '1.01';
 
-sub new {
-    my $class = shift;
+# ----------------------------------------------
 
-    my $self = bless {}, $class;
+sub new
+{
+	my($class) = shift;
+	my($self)  = bless {}, $class;
 
-    $self->_init( @_ );
+	$self -> _init( @_ );
 
-    return $self;
-}
+	return $self;
 
-sub _init {
-    my $self = shift;
-    my ($opts) = @_;
+} # End of new.
 
-    $self->{_tree} = undef;
-    $self->{_autocommit} = (exists $opts->{autocommit} ? $opts->{autocommit} : 1);
-    $self->{_changes} = [];
+# ----------------------------------------------
 
-    if ( exists $opts->{class} ) {
-        $self->{_class} = $opts->{class};
-    }
-    else {
-        $self->{_class} = 'Tree';
-    }
+sub _init
+{
+	my($self) = shift;
+	my($opts) = @_;
 
-    if ( exists $opts->{tree} ) {
-        $self->_set_tree( $opts->{tree} );
-    }
+	$self->{_tree}       = undef;
+	$self->{_autocommit} = (exists $opts->{autocommit} ? $opts->{autocommit} : 1);
+	$self->{_changes}    = [];
 
-    return $self;
-}
+	if ( exists $opts->{class} )
+	{
+		$self->{_class} = $opts->{class};
+	}
+	else
+	{
+		$self->{_class} = 'Tree';
+	}
 
-sub autocommit {
-    my $self = shift;
+	if ( exists $opts->{tree} )
+	{
+		$self -> _set_tree( $opts->{tree} );
+	}
 
-    if ( @_ ) {
-        (my $old, $self->{_autocommit}) = ($self->{_autocommit}, (shift && 1) );
-        return $old;
-    }
-    else {
-        return $self->{_autocommit};
-    }
-}
+	return $self;
 
-sub rollback {
-    my $self = shift;
+} # End of _init.
 
-    if ( @{$self->{_changes}} ) {
-        $self->_reload;
-        $self->{_changes} = [];
-    }
+# ----------------------------------------------
 
-    return $self;
-}
+sub autocommit
+{
+	my($self) = shift;
 
-sub commit {
-    my $self = shift;
+	if ( @_ )
+	{
+		(my $old, $self->{_autocommit}) = ($self->{_autocommit}, (shift && 1) );
 
-    if ( @{$self->{_changes}} ) {
-        $self->_commit;
-        $self->{_changes} = [];
-    }
+		return $old;
+	}
+	else
+	{
+		return $self->{_autocommit};
+	}
 
-    return $self;
-}
+} # End of autocommit.
 
-sub tree {
-    my $self = shift;
-    return $self->{_tree};
-}
+# ----------------------------------------------
 
-sub _set_tree {
-    my $self = shift;
-    my ($value) = @_;
+sub rollback
+{
+	my($self) = shift;
 
-    $self->{_tree} = $value;
+	if ( @{$self->{_changes} } )
+	{
+		$self -> _reload;
 
-    $self->_install_handlers;
+		$self->{_changes} = [];
+	}
 
-    return $self;
-}
+	return $self;
 
-sub _install_handlers {
-    my $self = shift;
+} # End of rollback.
 
-    $self->{_tree}->add_event_handler({
-        add_child    => $self->_add_child_handler,
-        remove_child => $self->_remove_child_handler,
-        value        => $self->_value_handler,
-    });
+# ----------------------------------------------
 
-    return $self;
-}
+sub commit
+{
+	my($self) = shift;
 
-sub _strip_options {
-    my $self = shift;
-    my ($params) = @_;
+	if ( @{$self->{_changes} } )
+	{
+		$self -> _commit;
 
-    if ( @$params && !blessed($params->[0]) && ref($params->[0]) eq 'HASH' ) {
-        return shift @$params;
-    }
-    else {
-        return {};
-    }
-}
+		$self->{_changes} = [];
+	}
 
-sub _add_child_handler {
-    my $self = shift;
-    return sub {
-        my ($parent, @children) = @_;
-        my $options = $self->_strip_options( \@children );
-        push @{$self->{_changes}}, {
-            action => 'add_child',
-            parent => $parent,
-            options => $options,
-            children => [ @children ],
-        };
-        $self->commit if $self->autocommit;
-    };
-}
+	return $self;
 
-sub _remove_child_handler {
-    my $self = shift;
-    return sub {
-        my ($parent, @children) = @_;
-        my $options = $self->_strip_options( \@children );
-        push @{$self->{_changes}}, {
-            action => 'remove_child',
-            parent => $parent,
-            options => $options,
-            children => [ @children ],
-        };
-        $self->commit if $self->autocommit;
-    };
-}
+} # End of commit.
 
-sub _value_handler {
-    my $self = shift;
-    return sub {
-        my ($node, $old, $new) = @_;
-        push @{$self->{_changes}}, {
-            action => 'change_value',
-            node => $node,
-            old_value => $old,
-            new_value => $node->value,
-        };
-        $self->commit if $self->autocommit;
-    };
-}
+# ----------------------------------------------
+
+sub tree
+{
+	my($self) = shift;
+
+	return $self->{_tree};
+
+} # End of tree.
+
+# ----------------------------------------------
+
+sub _set_tree
+{
+	my($self)  = shift;
+	my($value) = @_;
+
+	$self->{_tree} = $value;
+
+	$self->_install_handlers;
+
+	return $self;
+
+} # End of _set_tree.
+
+# ----------------------------------------------
+
+sub _install_handlers
+{
+	my($self) = shift;
+
+	$self->{_tree} -> add_event_handler
+	({
+		add_child	 => $self -> _add_child_handler,
+		remove_child => $self -> _remove_child_handler,
+		value		 => $self -> _value_handler,
+	});
+
+	return $self;
+
+} # End of _install_handlers.
+
+# ----------------------------------------------
+
+sub _strip_options
+{
+	my($self)   = shift;
+	my($params) = @_;
+
+	if ( @$params && ! blessed($params->[0]) && ref($params->[0]) eq 'HASH' )
+	{
+		return shift @$params;
+	}
+	else
+	{
+		return {};
+	}
+
+} # End of _strip_options.
+
+# ----------------------------------------------
+
+sub _add_child_handler
+{
+	my($self) = shift;
+
+	return sub
+	{
+		my($parent, @children) = @_;
+		my($options)           = $self -> _strip_options( \@children );
+
+		push @{$self->{_changes} },
+		{
+			action   => 'add_child',
+			children => [ @children ],
+			options  => $options,
+			parent   => $parent,
+		};
+
+		$self -> commit if ($self -> autocommit);
+	};
+
+} # End of _add_child_handler.
+
+# ----------------------------------------------
+
+sub _remove_child_handler
+{
+	my($self) = shift;
+
+	return sub
+	{
+		my($parent, @children) = @_;
+		my($options)           = $self -> _strip_options( \@children );
+
+		push @{$self->{_changes} },
+		{
+			action   => 'remove_child',
+			children => [ @children ],
+			options  => $options,
+			parent   => $parent,
+		};
+
+		$self -> commit if ($self -> autocommit);
+	};
+
+} # End of _remove_child_handler.
+
+# ----------------------------------------------
+
+sub _value_handler
+{
+	my($self) = shift;
+
+	return sub
+	{
+		my($node, $old, $new) = @_;
+
+		push @{$self->{_changes} },
+		{
+			action    => 'change_value',
+			new_value => $node->value,
+			node      => $node,
+			old_value => $old,
+		};
+
+		$self -> commit if ($self -> autocommit);
+	};
+
+} # End of _value_handler.
+
+# ----------------------------------------------
 
 1;
+
 __END__
 
 =head1 NAME

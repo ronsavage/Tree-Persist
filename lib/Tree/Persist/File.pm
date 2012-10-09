@@ -9,33 +9,44 @@ use Scalar::Util qw( blessed );
 
 our $VERSION = '1.01';
 
-sub _init {
-    my $class = shift;
-    my ($opts) = @_;
+# ----------------------------------------------
 
-    my $self = $class->SUPER::_init( $opts );
+sub _init
+{
+	my($class)         = shift;
+	my($opts)          = @_;
+	my($self)          = $class -> SUPER::_init( $opts );
+	$self->{_filename} = $opts->{filename};
 
-    $self->{_filename} = $opts->{filename};
+	return $self;
 
-    return $self;
-}
+} # End of _init.
 
-sub _create {
-    my $self = shift;
+# ----------------------------------------------
 
-    open my $fh, '>', $self->{_filename}
-        or die "Cannot open '$self->{_filename}' for writing: $!\n";
+sub _create
+{
+	my($self) = shift;
 
-    print $fh $self->_build_string( $self->{_tree} );
+	open my $fh, '>', $self->{_filename}
+		or die "Cannot open '$self->{_filename}' for writing: $!\n";
 
-    close $fh;
+	print $fh $self->_build_string( $self->{_tree} );
 
-    return $self;
-}
+	close $fh;
+
+	return $self;
+
+} # End of _create.
+
+# ----------------------------------------------
 
 *_commit = \&_create;
 
+# ----------------------------------------------
+
 1;
+
 __END__
 
 =head1 NAME

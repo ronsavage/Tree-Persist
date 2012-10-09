@@ -13,80 +13,98 @@ our $VERSION = '1.01';
 
 # ----------------------------------------------
 
-sub _reload {
-	my $self = shift;
+sub _reload
+{
+	my($self)    = shift;
+	my($linenum) = 0;
 
-	my $linenum = 0;
 	my @stack;
 	my $tree;
-	my $parser = XML::Parser->new(
-		Handlers => {
-			Start => sub {
-				shift;
-				my ($name, %args) = @_;
 
-				my $class = $args{class}
-					? $args{class}
-					: $self->{_class};
-				$class->require or die $UNIVERSAL::require::ERROR;
+	my $parser = XML::Parser -> new
+	(
+		Handlers =>
+		{
+			Start => sub
+			{
+				my($dummy, $name, %args) = @_;
+				my($class)               = $args{class} ? $args{class} : $self->{_class};
 
-				my $node = $class->new( $args{value} );
+				$class -> require or die $UNIVERSAL::require::ERROR;
 
-				if ( @stack ) {
-					$stack[-1]->add_child( $node );
+				my($node) = $class->new( $args{value} );
+
+				if ( @stack )
+				{
+					$stack[-1] -> add_child( $node );
 				}
-				else {
+				else
+				{
 					$tree = $node;
 				}
 
 				push @stack, $node;
 			},
-			End => sub {
+			End => sub
+			{
 				$linenum++;
+
 				pop @stack;
 			},
 		},
 	);
 
-	$parser->parsefile( $self->{_filename} );
+	$parser -> parsefile( $self->{_filename} );
 
-	$self->_set_tree( $tree );
+	$self -> _set_tree( $tree );
 
 	return $self;
-}
+
+} # End of _reload.
+
+# ----------------------------------------------
 
 my $pad = ' ' x 4;
 
-sub _build_string {
-	my $self = shift;
-	my ($tree) = @_;
-	my(%encode) = ('<' => '&lt;', '>' => '&gt;', '&' => '&amp;', "'" => '&apos;', '"' => '&quot;');
-	my $str = '';
+# ----------------------------------------------
 
-	my $curr_depth = $tree->depth;
-	my(@char);
-	my @closer;
+sub _build_string
+{
+	my($self)       = shift;
+	my($tree)       = @_;
+	my(%encode)     = ('<' => '&lt;', '>' => '&gt;', '&' => '&amp;', "'" => '&apos;', '"' => '&quot;');
+	my($str)        = '';
+	my($curr_depth) = $tree->depth;
 
-	foreach my $node ( $tree->traverse ) {
-		my $new_depth = $node->depth;
-		$str .= pop(@closer) while @closer && $curr_depth-- >= $new_depth;
+	my(@char, @closer);
+	my($new_depth);
 
+	for my $node ( $tree->traverse )
+	{
+		$new_depth  = $node->depth;
+		$str        .= pop(@closer) while @closer && $curr_depth-- >= $new_depth;
 		$curr_depth = $new_depth;
-		@char = map{$encode{$_} ? $encode{$_} : $_} split(//, $node -> value);
-		$str .= ($pad x $curr_depth)
-				. '<node class="'
-				. blessed($node)
-				. '" value="'
-				. join('', @char)
-				. '">' . $/;
+		@char       = map{$encode{$_} ? $encode{$_} : $_} split(//, $node -> value);
+		$str        .= ($pad x $curr_depth)
+					. '<node class="'
+					. blessed($node)
+					. '" value="'
+					. join('', @char)
+					. '">' . $/;
+
 		push @closer, ($pad x $curr_depth) . "</node>\n";
 	}
+
 	$str .= pop(@closer) while @closer;
 
 	return $str;
-}
+
+} # End of _build_string.
+
+# ----------------------------------------------
 
 1;
+
 __END__
 
 =head1 NAME

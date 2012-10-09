@@ -5,46 +5,57 @@ use warnings;
 
 our $VERSION = '1.01';
 
-sub connect {
-    my $class = shift;
+# ----------------------------------------------
 
-    my $obj = $class->_instantiate( @_ );
+sub connect
+{
+	my($class) = shift;
+	my($obj)   = $class -> _instantiate( @_ );
 
-    $obj->_reload;
+	$obj -> _reload;
 
-    return $obj;
-}
+	return $obj;
 
-sub create_datastore {
-    my $class = shift;
+} # End of connect.
 
-    my $obj = $class->_instantiate( @_ );
+# ----------------------------------------------
 
-    $obj->_create;
+sub create_datastore
+{
+	my($class) = shift;
+	my($obj)   = $class -> _instantiate( @_ );
 
-    return $obj;
-}
+	$obj -> _create;
 
-sub _instantiate {
-    my $class = shift;
-    my ($opts) = @_;
+	return $obj;
 
-    my $type = delete $opts->{type};
-    $type = 'File' unless $type;
+} # End of create_datastore.
 
-    use Tree::Persist::File::XML;
-    use Tree::Persist::DB::SelfReferential;
+# ----------------------------------------------
 
-    my $obj =
-        $type eq 'File' ? Tree::Persist::File::XML->new( $opts ) :
-        $type eq 'DB'   ? Tree::Persist::DB::SelfReferential->new( $opts ) :
-        die "Unknown type '$type'"
-    ;
+sub _instantiate
+{
+	my($class) = shift;
+	my($opts)  = @_;
+	my($type)  = delete $opts->{type};
+	$type      = 'File' if (! $type);
 
-    return $obj;
-}
+	use Tree::Persist::File::XML;
+	use Tree::Persist::DB::SelfReferential;
+
+	my($obj) =
+		$type eq 'File' ? Tree::Persist::File::XML->new( $opts ) :
+		$type eq 'DB'   ? Tree::Persist::DB::SelfReferential->new( $opts ) :
+		die "Unknown type '$type'";
+
+	return $obj;
+
+} # End of _instantiate.
+
+# ----------------------------------------------
 
 1;
+
 __END__
 
 =head1 NAME
@@ -73,8 +84,8 @@ Create a datastore, which includes writing the tree:
 	my($writer) = Tree::Persist -> create_datastore
 	({
 		filename => 'scripts/store.xml',
-		tree     => $tree_1,
-		type     => 'File',
+		tree	 => $tree_1,
+		type	 => 'File',
 	});
 
 Retrieve the tree:
@@ -82,7 +93,7 @@ Retrieve the tree:
 	my($reader) = Tree::Persist -> connect
 	({
 		filename => 'scripts/store.xml',
-		type     => 'File',
+		type	 => 'File',
 	});
 
 	my($tree_2) = $reader -> tree;
@@ -186,15 +197,15 @@ We use L<Devel::Cover> to test the code coverage of our tests. Below is the
 L<Devel::Cover> report on this module's V 0.99 test suite.
 
   ---------------------------- ------ ------ ------ ------ ------ ------ ------
-  File                           stmt   bran   cond    sub    pod   time  total
+  File						   stmt   bran   cond	sub	pod   time  total
   ---------------------------- ------ ------ ------ ------ ------ ------ ------
-  blib/lib/Tree/Persist.pm      100.0   83.3    n/a  100.0  100.0   17.7   97.6
+  blib/lib/Tree/Persist.pm	  100.0   83.3	n/a  100.0  100.0   17.7   97.6
   .../lib/Tree/Persist/Base.pm  100.0   88.9  100.0  100.0  100.0   20.0   98.3
-  blib/lib/Tree/Persist/DB.pm   100.0    n/a    n/a  100.0    n/a    3.1  100.0
-  ...ist/DB/SelfReferential.pm  100.0   93.8    n/a  100.0    n/a   36.3   99.2
-  .../lib/Tree/Persist/File.pm  100.0   50.0    n/a  100.0    n/a    7.7   96.7
-  .../Tree/Persist/File/XML.pm  100.0  100.0  100.0  100.0    n/a   15.1  100.0
-  Total                         100.0   89.1  100.0  100.0  100.0  100.0   98.7
+  blib/lib/Tree/Persist/DB.pm   100.0	n/a	n/a  100.0	n/a	3.1  100.0
+  ...ist/DB/SelfReferential.pm  100.0   93.8	n/a  100.0	n/a   36.3   99.2
+  .../lib/Tree/Persist/File.pm  100.0   50.0	n/a  100.0	n/a	7.7   96.7
+  .../Tree/Persist/File/XML.pm  100.0  100.0  100.0  100.0	n/a   15.1  100.0
+  Total						 100.0   89.1  100.0  100.0  100.0  100.0   98.7
   ---------------------------- ------ ------ ------ ------ ------ ------ ------
 
 =head1 SUPPORT
