@@ -95,7 +95,7 @@ Tree::Persist::File::XML - A handler for Tree persistence
 
 =head1 SYNOPSIS
 
-Please see L<Tree::Persist> for how to use this module.
+See L<Tree::Persist/SYNOPSIS> or scripts/xml.demo.pl for sample code.
 
 =head1 DESCRIPTION
 
@@ -124,15 +124,13 @@ by the parent containing the child.
 NOTE: This plugin will currently only handle values that are strings or have a
 stringification method.
 
-=head1 TODO
+The 5 build-in XML character entities (within the node's I<value>) are encoded using this map:
 
-=over 4
+	my(%encode) = ('<' => '&lt;', '>' => '&gt;', '&' => '&amp;', "'" => '&apos;', '"' => '&quot;');
 
-=item *
+They are decoded when L<XML::Parser> reads the value back in.
 
-Currently, the value is not XML-encoded.
-
-=back
+See L<http://www.w3.org/standards/xml/core> for details.
 
 =head1 CODE COVERAGE
 

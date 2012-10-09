@@ -26,6 +26,10 @@ __END__
 
 Tree::Persist::DB - The base class for DB plugins for Tree persistence
 
+=head1 SYNOPSIS
+
+See L<Tree::Persist/SYNOPSIS> or scripts/xml.demo.pl for sample code.
+
 =head1 DESCRIPTION
 
 This class is the base class for the Tree::Persist::DB::* hierarchy, which

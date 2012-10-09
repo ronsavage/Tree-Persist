@@ -42,6 +42,10 @@ __END__
 
 Tree::Persist::File - The base class for File plugins for Tree persistence
 
+=head1 SYNOPSIS
+
+See L<Tree::Persist/SYNOPSIS> or scripts/xml.demo.pl for sample code.
+
 =head1 DESCRIPTION
 
 This class is a base class for the Tree::Persist::File::* hierarchy, which

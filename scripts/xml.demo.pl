@@ -28,7 +28,7 @@ my($tree_1) = Tree -> new('A') -> add_child
 	Tree -> new('B'),
 	Tree -> new('C') -> add_child
 	(
-		Tree -> new('D'),
+		Tree -> new('<D>'),
 	),
 	Tree -> new('E'),
 );

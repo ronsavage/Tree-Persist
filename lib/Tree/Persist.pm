@@ -49,11 +49,14 @@ __END__
 
 =head1 NAME
 
-Tree::Persist - A transparent persistence layer for Tree and its children
+Tree::Persist - A transparent persistence layer for L<Tree> and its children
 
 =head1 SYNOPSIS
 
 Create a tree:
+
+	use Tree;
+	use Tree::Persist;
 
 	my($tree_1) = Tree -> new('A') -> add_child
 	(
@@ -65,7 +68,7 @@ Create a tree:
 		Tree -> new('E'),
 	);
 
-Create a datastore:
+Create a datastore, which includes writing the tree:
 
 	my($writer) = Tree::Persist -> create_datastore
 	({
@@ -74,7 +77,7 @@ Create a datastore:
 		type     => 'File',
 	});
 
-Retrieve a tree:
+Retrieve the tree:
 
 	my($reader) = Tree::Persist -> connect
 	({

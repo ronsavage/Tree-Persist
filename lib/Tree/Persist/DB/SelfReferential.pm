@@ -251,7 +251,7 @@ Tree::Persist::DB::SelfReferential - A handler for Tree persistence
 
 =head1 SYNOPSIS
 
-Please see L<Tree::Persist> for how to use this module.
+See L<Tree::Persist/SYNOPSIS> or scripts/xml.demo.pl for sample code.
 
 =head1 DESCRIPTION
 

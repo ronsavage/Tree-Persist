@@ -165,6 +165,10 @@ __END__
 
 Tree::Persist::Base - The base class for the Tree persistence plugin hierarchy
 
+=head1 SYNOPSIS
+
+See L<Tree::Persist/SYNOPSIS> or scripts/xml.demo.pl for sample code.
+
 =head1 DESCRIPTION
 
 This provides a useful baseclass for all the L<Tree::Persist> plugins.
@@ -198,6 +202,10 @@ L</autocommit([$autocommit])> for more info.)
 This is the class that will be used to bless the nodes into, unless the
 datastore specifies otherwise. It will default to 'Tree'.
 
+=item * tree (required when calling create_datastore(), not used when calling connect() )
+
+This is the object of type L<Tree> which is the root of the tree to write to the store.
+
 =back
 
 =head1 METHODS
@@ -206,6 +214,9 @@ datastore specifies otherwise. It will default to 'Tree'.
 
 This is the constructor. C<%opts> is the set of parameters as described above.
 Sub-classes may add their own optional or mandatory parameters.
+
+End-user code never calls new(). You always call L<Tree::Persist/connect({%opts})>
+or L<Tree::Persist/create_datastore({%opts})>
 
 =head2 autocommit([$autocommit])
 
