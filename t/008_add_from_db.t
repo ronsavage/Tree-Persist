@@ -19,7 +19,7 @@ sub report_tree
 {
 	my($depth, $tree, $stack) = @_;
 
-	push @$stack, ':--' x $depth . $tree -> value;
+	push @$stack, '|--' x $depth . $tree -> value;
 	push @$stack, map{@{report_tree($depth + 1, $_, [])} } $tree -> children;
 
 	return $stack;
@@ -55,7 +55,6 @@ my(@opts)       = ($ENV{DBI_DSN}, $ENV{DBI_USER}, $ENV{DBI_PASS});
 my($dbh)        = DBI -> connect(@opts, {RaiseError => 1, PrintError => 0, AutoCommit => 1});
 my($table_name) = 'store';
 
-$dbh -> do("drop table $table_name");
 $dbh -> do(<<EOS);
 create table $table_name
 (
@@ -107,13 +106,13 @@ $tree_3 -> add_child($tree_4);
 
 my($expected) = <<EOS;
 R
-:--S
-:--T
-:--A
-:--:--B
-:--:--C
-:--:--:--D
-:--:--E
+|--S
+|--T
+|--A
+|--|--B
+|--|--C
+|--|--|--D
+|--|--E
 EOS
 $expected   = [split(/\n/, $expected)];
 my($result) = report_tree(0, $tree_3, []);
@@ -138,13 +137,13 @@ $tree_6 -> add_child({at => 1}, $tree_5);
 
 $expected = <<EOS;
 A
-:--B
-:--R
-:--:--S
-:--:--T
-:--C
-:--:--D
-:--E
+|--B
+|--R
+|--|--S
+|--|--T
+|--C
+|--|--D
+|--E
 EOS
 $expected = [split(/\n/, $expected)];
 $result   = report_tree(0, $tree_6, []);
