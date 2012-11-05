@@ -1,5 +1,8 @@
 Revision history for Perl distribution Tree::Persist
 
+1.02  Unreleased.
+	- Add README.
+
 1.01  Thu Oct  4 10:27:00 2012
 	- Ron Savage is now co-maint.
 	- Re-write MySQL-specific code, which is only used in the tests.
