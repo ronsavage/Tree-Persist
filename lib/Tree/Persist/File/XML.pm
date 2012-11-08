@@ -9,7 +9,7 @@ use Scalar::Util qw( blessed refaddr );
 use UNIVERSAL::require;
 use XML::Parser;
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 # ----------------------------------------------
 
