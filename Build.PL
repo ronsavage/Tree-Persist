@@ -9,7 +9,7 @@ Module::Build -> new
 (
 	dist_abstract => 'A transparent persistence layer for Tree and its children',
 	module_name   => 'Tree::Persist',
-	license       => 'perl_5',
+	license       => 'artistic_2',
 	requires      =>
 	{
 		'perl'               => '5.6.0',
