@@ -25,7 +25,7 @@ WriteMakefile
 		Test::File           => 1.10,
 		Test::File::Cleaner  => 0.02,
 		Test::File::Contents => 0.02,
-		Test::Simple         => 0.98,
+		Test::More         => 0.98,
 		Test::Pod            => 1.45,
 		Test::Pod::Coverage  => 1.08,
 		Tree                 => 1.00,

@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::Simple;
+use Test::More;
 
 # ---------------------------------------------
 
