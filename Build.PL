@@ -31,7 +31,7 @@ Module::Build -> new
 		'File::Copy'           => '0.01',
 		'File::Spec'           => '0.01',
 		'Scalar::Util'         => '1.10',
-		'Test::More'           => '0.47',
+		'Test::Simple'           => '0.47',
 		'Test::File'           => '1.10',
 		'Test::File::Cleaner'  => '0.02',
 		'Test::File::Contents' => '0.02',
