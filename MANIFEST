@@ -1,6 +1,6 @@
 Build.PL
 Changelog.ini
-CHANGES
+Changes
 lib/Tree/Persist.pm
 lib/Tree/Persist/Base.pm
 lib/Tree/Persist/DB.pm
