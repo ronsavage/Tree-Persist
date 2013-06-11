@@ -24,22 +24,25 @@ name: Tree-Persist
 provides:
   Tree::Persist:
     file: lib/Tree/Persist.pm
-    version: 1.02
+    version: 1.03
   Tree::Persist::Base:
     file: lib/Tree/Persist/Base.pm
-    version: 1.02
+    version: 1.03
   Tree::Persist::DB:
     file: lib/Tree/Persist/DB.pm
-    version: 1.02
+    version: 1.03
   Tree::Persist::DB::SelfReferential:
     file: lib/Tree/Persist/DB/SelfReferential.pm
-    version: 1.02
+    version: 1.03
   Tree::Persist::File:
     file: lib/Tree/Persist/File.pm
-    version: 1.02
+    version: 1.03
   Tree::Persist::File::XML:
     file: lib/Tree/Persist/File/XML.pm
-    version: 1.02
+    version: 1.03
+  Tree::Persist::File::XMLWithSingleQuotes:
+    file: lib/Tree/Persist/File/XMLWithSingleQuotes.pm
+    version: 1.03
 requires:
   Scalar::Util: 1.10
   Tree: 1.00
@@ -47,4 +50,4 @@ requires:
   perl: v5.6.0
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
-version: 1.02
+version: 1.03
