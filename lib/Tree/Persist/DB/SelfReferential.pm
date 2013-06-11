@@ -8,7 +8,7 @@ use base qw( Tree::Persist::DB );
 use Scalar::Util qw( blessed refaddr );
 use UNIVERSAL::require;
 
-our $VERSION = '1.05';
+our $VERSION = '1.03';
 
 my(%defaults) =
 (
