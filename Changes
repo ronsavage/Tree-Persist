@@ -1,6 +1,12 @@
 Revision history for Perl distribution Tree::Persist
 
-1.03  Unreleased
+1.03  Tue Jun 11 17:04:00 2013
+	- Fix some tests which had stopped working.
+	- Implement user-specified class names for inflation of objects.
+		This uses Module::Runtime.
+		See t/load_from_file.t and t/save_and_load.t for sample code.
+	- Replace UNIVERSAL::require with Module::Runtime in various modules.
+	- Update PODs.
 	- Rename test files from \d\d\d_*.t to *.t.
 
 1.02  Thu Nov  8 12:38:00 2012

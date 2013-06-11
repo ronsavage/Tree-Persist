@@ -5,8 +5,10 @@ use warnings;
 
 use base qw( Tree::Persist::File );
 
+use Module::Runtime;
+
 use Scalar::Util qw( blessed refaddr );
-use UNIVERSAL::require;
+
 use XML::Parser;
 
 our $VERSION = '1.03';
@@ -29,10 +31,7 @@ sub _reload
 			{
 				my($dummy, $name, %args) = @_;
 				my($class)               = $args{class} ? $args{class} : $self->{_class};
-
-				$class -> require or die $UNIVERSAL::require::ERROR;
-
-				my($node) = $class->new( $args{value} );
+				my($node)                = Module::Runtime::use_module($class)->new( $args{value} );
 
 				if ( @stack )
 				{
@@ -109,7 +108,7 @@ __END__
 
 =head1 NAME
 
-Tree::Persist::File::XML - A handler for Tree persistence
+Tree::Persist::File::XMLWithSingleQuotes - A handler for Tree persistence
 
 =head1 SYNOPSIS
 
@@ -120,16 +119,28 @@ See L<Tree::Persist/SYNOPSIS> or scripts/xml.demo.pl for sample code.
 This module is a plugin for L<Tree::Persist> to store a L<Tree> to an XML
 file.
 
+This module uses single-quotes around the values of tag attributes.
+
 =head1 PARAMETERS
 
 Parameters are used in the call to L<Tree::Persist/connect({%opts})> or L<Tree::Persist/create_datastore({%opts})>.
 
-This class requires no additional parameters beyond those specified by its parent,
-L<Tree::Persist::File>.
+In addition to any parameters required by its parent L<Tree::Persist::File>, the following
+parameters are used by C<connect()> or C<create_datastore()>:
+
+=over 4
+
+=item * class (optional)
+
+This is the name of the deflator/inflator class.
+
+See t/save_and_load.t for sample code.
+
+=back
 
 =head1 METHODS
 
-Tree::Persist::File::XML is a sub-class of L<Tree::Persist::File>, and inherits all its methods.
+Tree::Persist::File::XMLWithSingleQuotes is a sub-class of L<Tree::Persist::File>, and inherits all its methods.
 
 =head1 XML SPEC
 
@@ -142,7 +153,7 @@ by the parent containing the child.
 NOTE: This plugin will currently only handle values that are strings or have a
 stringification method.
 
-The 5 build-in XML character entities (within the node's I<value>) are encoded using this map:
+The 5 build-in XML character entities (within the I<value> of the node) are encoded using this map:
 
 	my(%encode) = ('<' => '&lt;', '>' => '&gt;', '&' => '&amp;', "'" => '&apos;', '"' => '&quot;');
 
@@ -150,7 +161,7 @@ They are decoded when L<XML::Parser> reads the value back in.
 
 See L<http://www.w3.org/standards/xml/core> for details.
 
-See also scripts/xml.demo.pl and scripts/store.xml.
+See t/save_and_load.t for sample code.
 
 =head1 CODE COVERAGE
 
@@ -167,6 +178,9 @@ Rob Kinyon E<lt>rob.kinyon@iinteractive.comE<gt>
 Stevan Little E<lt>stevan.little@iinteractive.comE<gt>
 
 Thanks to Infinity Interactive for generously donating our time.
+
+Co-maintenance since V 1.01 is by Ron Savage <rsavage@cpan.org>.
+Uses of 'I' in previous versions is not me, but will be hereafter.
 
 =head1 COPYRIGHT AND LICENSE
 

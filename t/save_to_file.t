@@ -32,10 +32,10 @@ my $cleaner = Test::File::Cleaner->new( $dirname );
 
     my $tree = Tree->new( 'root' );
 
-    my $persist = $CLASS->create_datastore({
-        tree => $tree,
+    my $persist  = $CLASS->create_datastore({
+        tree     => $tree,
         filename => $filename,
-		class => 'Tree::Persist::File::XMLWithSingleQuotes',
+		class    => 'Tree::Persist::File::XMLWithSingleQuotes',
     });
 
     file_exists_ok( $filename, 'Tree1 file exists' );
@@ -91,10 +91,10 @@ __END_FILE__
         ),
     );
 
-    my $persist = $CLASS->create_datastore({
+    my $persist  = $CLASS->create_datastore({
         filename => $filename,
-        tree => $tree,
-		class => 'Tree::Persist::File::XMLWithSingleQuotes',
+        tree     => $tree,
+		class    => 'Tree::Persist::File::XMLWithSingleQuotes',
     });
 
     file_exists_ok( $filename, 'Tree3 file exists' );

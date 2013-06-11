@@ -5,8 +5,9 @@ use warnings;
 
 use base qw( Tree::Persist::DB );
 
+use Module::Runtime;
+
 use Scalar::Util qw( blessed refaddr );
-use UNIVERSAL::require;
 
 our $VERSION = '1.03';
 
@@ -55,9 +56,7 @@ sub _reload
 
 	$sth -> finish;
 
-	$class->require or die $UNIVERSAL::require::ERROR;
-
-	my($tree)     = $class -> new( $value );
+	my($tree)     = Module::Runtime::use_module($class) -> new( $value );
 	my($ref_addr) = refaddr $self;
 
 	$tree->meta->{$ref_addr}{id}        = $id;
@@ -78,9 +77,7 @@ sub _reload
 
 		while ($sth_child -> fetch)
 		{
-			$class->require or die $UNIVERSAL::require::ERROR;
-
-			$node = $class -> new( $value );
+			$node = Module::Runtime::use_module($class) -> new( $value );
 
 			$parent -> add_child( $node );
 
@@ -359,6 +356,9 @@ Rob Kinyon E<lt>rob.kinyon@iinteractive.comE<gt>
 Stevan Little E<lt>stevan.little@iinteractive.comE<gt>
 
 Thanks to Infinity Interactive for generously donating our time.
+
+Co-maintenance since V 1.01 is by Ron Savage <rsavage@cpan.org>.
+Uses of 'I' in previous versions is not me, but will be hereafter.
 
 =head1 COPYRIGHT AND LICENSE
 
