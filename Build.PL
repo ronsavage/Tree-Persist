@@ -28,15 +28,15 @@ Module::Build -> new
 	},
 	build_requires =>
 	{
-		File::Copy           => 0.01,
-		File::Spec           => 0.01,
-		Scalar::Util         => 1.10,
-		Test::File           => 1.10,
-		Test::File::Cleaner  => 0.02,
-		Test::File::Contents => 0.02,
-		Test::More         => 0.98,
-#		Test::Pod            => 1.45, # Make it optional. See t/pod.t
-#		Test::Pod::Coverage  => 1.08, # Make it optional. See t/pod.t
+		'File::Copy'           => 0.01,
+		'File::Spec'           => 0.01,
+		'Scalar::Util'         => 1.10,
+		'Test::File'           => 1.10,
+		'Test::File::Cleaner'  => 0.02,
+		'Test::File::Contents' => 0.02,
+		'Test::More'           => 0.98,
+#		'Test::Pod'            => 1.45, # Make it optional. See t/pod.t
+#		'Test::Pod::Coverage'  => 1.08, # Make it optional. See t/pod.t
 	},
 	recursive_test_files => 1,
 	add_to_cleanup       =>

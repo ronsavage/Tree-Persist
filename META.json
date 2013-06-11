@@ -6,9 +6,9 @@
       "Co-maintenance since V 1.01 is by Ron Savage <rsavage@cpan.org>."
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120630",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.120921",
    "license" : [
-      "perl_5"
+      "artistic_2"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -20,11 +20,11 @@
          "requires" : {
             "File::Copy" : "0.01",
             "File::Spec" : "0.01",
-            "Scalar::Util" : "1.10",
-            "Test::File" : "1.10",
+            "Scalar::Util" : "1.1",
+            "Test::File" : "1.1",
             "Test::File::Cleaner" : "0.02",
             "Test::File::Contents" : "0.02",
-            "Test::More" : "0.47"
+            "Test::More" : "0.98"
          }
       },
       "configure" : {
@@ -70,7 +70,7 @@
    "release_status" : "stable",
    "resources" : {
       "license" : [
-         "http://dev.perl.org/licenses/"
+         "http://www.perlfoundation.org/artistic_license_2_0"
       ]
    },
    "version" : "1.02"
