@@ -50,12 +50,12 @@ use_ok( $CLASS )
 {
     my $persist = $CLASS->connect({
         filename => catfile( qw( t datafiles tree2.xml ) ),
-        class => 'Tree::Binary',
+        class => 'Tree::Persist::File::XML',
     });
 
     my $tree = $persist->tree();
 
-    isa_ok( $tree, 'Tree::Binary' );
+    isa_ok( $tree, 'Tree' );
 
     $runs{stats}{func}->( $tree,
         height => 2, width => 1, depth => 0, size => 2, is_root => 1, is_leaf => 0,

@@ -5,7 +5,7 @@ use warnings;
 
 use base qw( Tree::Persist::Base );
 
-our $VERSION = '1.02';
+our $VERSION = '1.05';
 
 # ----------------------------------------------
 

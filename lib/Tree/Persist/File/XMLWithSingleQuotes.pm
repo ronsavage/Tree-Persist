@@ -1,4 +1,4 @@
-package Tree::Persist::File::XML;
+package Tree::Persist::File::XMLWithSingleQuotes;
 
 use strict;
 use warnings;
@@ -86,11 +86,11 @@ sub _build_string
 		$curr_depth = $new_depth;
 		@char       = map{$encode{$_} ? $encode{$_} : $_} split(//, $node -> value);
 		$str        .= ($pad x $curr_depth)
-					. '<node class="'
+					. "<node class='"
 					. blessed($node)
-					. '" value="'
+					. "' value='"
 					. join('', @char)
-					. '">' . $/;
+					. "'>" . $/;
 
 		push @closer, ($pad x $curr_depth) . "</node>\n";
 	}

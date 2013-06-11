@@ -11,8 +11,6 @@ use Test::More;
 eval "use DBI";
 plan skip_all => "DBI required for testing DB plugin" if $@;
 
-# The EXLOCK option is for BSD-based systems.
-
 my($dir);
 my($file);
 
@@ -20,6 +18,8 @@ if (! $ENV{DBI_DSN})
 {
 	eval "use DBD::SQLite";
 	plan skip_all => "DBD::SQLite required for testing DB plugin" if $@;
+
+	# The EXLOCK option is for BSD-based systems.
 
 	$dir           = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
 	$file          = File::Spec -> catfile($dir, 'test.sqlite');
@@ -34,8 +34,6 @@ plan tests => 11 + 6 * $runs{stats}{plan};
 my $CLASS = 'Tree::Persist';
 use_ok( $CLASS )
     or Test::More->builder->BAILOUT( "Cannot load $CLASS" );
-
-# The EXLOCK option is for BSD-based systems.
 
 my(@opts) = ($ENV{DBI_DSN}, $ENV{DBI_USER}, $ENV{DBI_PASS});
 my $dbh   = DBI->connect(@opts, {RaiseError => 1, PrintError => 0, AutoCommit => 1});
@@ -152,12 +150,12 @@ __END_SQL__
         id_col => 'some_id',
         parent_id_col => 'some_parent_id',
         value_col => 'some_value',
-        class => 'Tree::Binary',
+        class => 'Tree::Persist::DB::SelfReferential',
     });
 
     my $tree = $persist->tree();
 
-    isa_ok( $tree, 'Tree::Binary' );
+    isa_ok( $tree, 'Tree' );
 
     $runs{stats}{func}->( $tree,
         height => 2, width => 1, depth => 0, size => 2, is_root => 1, is_leaf => 0,

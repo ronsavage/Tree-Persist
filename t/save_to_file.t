@@ -35,11 +35,12 @@ my $cleaner = Test::File::Cleaner->new( $dirname );
     my $persist = $CLASS->create_datastore({
         tree => $tree,
         filename => $filename,
+		class => 'Tree::Persist::File::XMLWithSingleQuotes',
     });
 
     file_exists_ok( $filename, 'Tree1 file exists' );
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
-<node class="Tree" value="root">
+<node class='Tree' value='root'>
 </node>
 __END_FILE__
 
@@ -93,17 +94,19 @@ __END_FILE__
     my $persist = $CLASS->create_datastore({
         filename => $filename,
         tree => $tree,
+		class => 'Tree::Persist::File::XMLWithSingleQuotes',
     });
 
     file_exists_ok( $filename, 'Tree3 file exists' );
+
     file_contents_is( $filename, <<__END_FILE__, '... and the contents are good' );
-<node class="Tree" value="A">
-    <node class="Tree" value="B">
+<node class='Tree' value='A'>
+    <node class='Tree' value='B'>
     </node>
-    <node class="Tree" value="C">
-        <node class="Tree" value="D">
+    <node class='Tree' value='C'>
+        <node class='Tree' value='D'>
         </node>
-        <node class="Tree" value="E">
+        <node class='Tree' value='E'>
         </node>
     </node>
 </node>

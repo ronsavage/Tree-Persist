@@ -3,7 +3,9 @@ package Tree::Persist;
 use strict;
 use warnings;
 
-our $VERSION = '1.02';
+use Module::Runtime;
+
+our $VERSION = '1.05';
 
 # ----------------------------------------------
 
@@ -35,20 +37,18 @@ sub create_datastore
 
 sub _instantiate
 {
-	my($class) = shift;
+	my($self) = shift;
 	my($opts)  = @_;
-	my($type)  = delete $opts->{type};
-	$type      = 'File' if (! $type);
+	my($class) = delete $$opts{class};
+	my($type)  = delete $$opts{type};
 
-	use Tree::Persist::File::XML;
-	use Tree::Persist::DB::SelfReferential;
+	if (! $class)
+	{
+		$type  = 'File' if (! $type);
+		$class = $type eq 'File' ? 'Tree::Persist::File::XML' : 'Tree::Persist::DB::SelfReferential';
+	}
 
-	my($obj) =
-		$type eq 'File' ? Tree::Persist::File::XML->new( $opts ) :
-		$type eq 'DB'   ? Tree::Persist::DB::SelfReferential->new( $opts ) :
-		die "Unknown type '$type'";
-
-	return $obj;
+	return Module::Runtime::use_module($class)->new( $opts );
 
 } # End of _instantiate.
 
@@ -84,8 +84,8 @@ Create a datastore, which includes writing the tree:
 	my($writer) = Tree::Persist -> create_datastore
 	({
 		filename => 'scripts/store.xml',
-		tree	 => $tree_1,
-		type	 => 'File',
+		tree     => $tree_1,
+		type     => 'File',
 	});
 
 Retrieve the tree:
@@ -93,12 +93,12 @@ Retrieve the tree:
 	my($reader) = Tree::Persist -> connect
 	({
 		filename => 'scripts/store.xml',
-		type	 => 'File',
+		type     => 'File',
 	});
 
 	my($tree_2) = $reader -> tree;
 
-See scripts/xml.demo.pl and its storage file scripts/store.xml. See also t/008_add_from_db.t.
+See scripts/xml.demo.pl and its storage file scripts/store.xml. See also t/add_from_db.t.
 
 General usage of methods:
 
