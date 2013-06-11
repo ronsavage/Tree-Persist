@@ -148,7 +148,9 @@ This module uses double-quotes around the values of tag attributes.
 
 This module uses single-quotes around the values of tag attributes.
 
-It is included simply to demonstrate a user-supplied class for deflation/inflation.
+It is included simply to demonstrate using a user-supplied class for deflation/inflation.
+
+See t/save_and_load.t for sample code.
 
 =back
 

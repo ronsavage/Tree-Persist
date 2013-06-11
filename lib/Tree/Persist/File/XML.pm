@@ -134,6 +134,12 @@ parameters are used by C<connect()> or C<create_datastore()>:
 
 This is the name of the deflator/inflator class.
 
+The C<class> parameter takes precedence over the C<type> parameter.
+
+If C<class> is not provided, C<type> is used, and defaults to 'File'. Then C<class> is determined using:
+
+	$class = $type eq 'File' ? 'Tree::Persist::File::XML' : 'Tree::Persist::DB::SelfReferential';
+
 See t/*.t for sample code.
 
 =back

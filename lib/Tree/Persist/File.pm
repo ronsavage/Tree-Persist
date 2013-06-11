@@ -71,13 +71,25 @@ parameters are used by C<connect()> or C<create_datastore()>:
 
 =over 4
 
-=item * type (required)
+=item * class (optional)
 
-For any File::* plugin to be used, the type must be 'File' (case-sensitive).
+This is the name of a user-supplied class for deflation/inflation.
+
+The C<class> parameter takes precedence over the C<type> parameter.
+
+If C<class> is not provided, C<type> is used, and defaults to 'File'. Then C<class> is determined using:
+
+	$class = $type eq 'File' ? 'Tree::Persist::File::XML' : 'Tree::Persist::DB::SelfReferential';
+
+See t/save_and_load.t for sample code.
 
 =item * filename (required)
 
 This is the filename that will be used as the datastore.
+
+=item * type (optional)
+
+For any File::* plugin to be used, the type must be 'File' (case-sensitive) unless a C<class> is provided.
 
 =back
 
