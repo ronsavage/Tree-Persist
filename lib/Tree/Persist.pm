@@ -5,7 +5,7 @@ use warnings;
 
 use Module::Runtime;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 # ----------------------------------------------
 
