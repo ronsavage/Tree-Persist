@@ -1,13 +1,11 @@
 ---
 abstract: 'A transparent persistence layer for Tree and its children'
 author:
-  - 'Rob Kinyon E<lt>rob.kinyon@iinteractive.comE<gt>'
-  - 'Stevan Little E<lt>stevan.little@iinteractive.comE<gt>'
-  - 'Co-maintenance since V 1.01 is by Ron Savage <rsavage@cpan.org>.'
+  - 'Rob Kinyon <rkinyon@cpan.org>'
 build_requires:
   Test::More: 0.96
 configure_requires:
-  Module::Build: 0.40
+  Module::Build: 0.38
 dynamic_config: 0
 generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560'
 license: artistic_2
@@ -18,25 +16,25 @@ name: Tree-Persist
 provides:
   Tree::Persist:
     file: lib/Tree/Persist.pm
-    version: 1.03
+    version: 1.04
   Tree::Persist::Base:
     file: lib/Tree/Persist/Base.pm
-    version: 1.03
+    version: 1.04
   Tree::Persist::DB:
     file: lib/Tree/Persist/DB.pm
-    version: 1.03
+    version: 1.04
   Tree::Persist::DB::SelfReferential:
     file: lib/Tree/Persist/DB/SelfReferential.pm
-    version: 1.03
+    version: 1.04
   Tree::Persist::File:
     file: lib/Tree/Persist/File.pm
-    version: 1.03
+    version: 1.04
   Tree::Persist::File::XML:
     file: lib/Tree/Persist/File/XML.pm
-    version: 1.03
+    version: 1.04
   Tree::Persist::File::XMLWithSingleQuotes:
     file: lib/Tree/Persist/File/XMLWithSingleQuotes.pm
-    version: 1.03
+    version: 1.04
 requires:
   File::Copy: 0.01
   File::Spec: 0.01
@@ -49,4 +47,4 @@ requires:
   warnings: 0
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
-version: 1.03
+version: 1.04
