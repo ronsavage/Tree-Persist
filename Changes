@@ -1,5 +1,8 @@
 Revision history for Perl distribution Tree::Persist
 
+1.04  Thu Jun 13 12:50:00 2013
+	- Add Module::Runtime to pre-reqs in Build.PL and Makefile.PL. This is a bad oversight on my part.
+
 1.03  Tue Jun 11 17:04:00 2013
 	- Fix some tests which had stopped working.
 	- Implement user-specified class names for deflation/inflation of objects.

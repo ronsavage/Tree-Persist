@@ -11,31 +11,36 @@ WriteMakefile
 (
 	($] ge '5.005') ?
 	(
-		AUTHOR   => 'Rob Kinyin (rkinyon@cpan.org)',
-		ABSTRACT => 'Persist multiple trees in a single db table, preserving child order',
+		AUTHOR   => 'Rob Kinyin <rkinyon@cpan.org>',
+		ABSTRACT => 'A transparent persistence layer for Tree and its children',
 	) : (),
-	NAME         => 'Tree::Persist',
-	LICENSE   => 'artistic_2',
-	VERSION_FROM => 'lib/Tree/Persist.pm',
-	PREREQ_PM    =>
+	clean =>
 	{
-		File::Copy           => 0.01,
-		File::Spec           => 0.01,
-		Scalar::Util         => 1.10,
-		Test::File           => 1.10,
-		Test::File::Cleaner  => 0.02,
-		Test::File::Contents => 0.02,
-		Test::More         => 0.98,
-#		Test::Pod            => 1.45, # Make it optional. See t/pod.t
-#		Test::Pod::Coverage  => 1.08, # Make it optional. See t/pod.t
-		Tree                 => 1.00,
-		UNIVERSAL::require   => 0.10,
+		FILES => 'blib/* Makefile MANIFEST Lingua-EN-StopWordList-*'
 	},
-	INSTALLDIRS => 'site',
-	EXE_FILES   => [],
-	PL_FILES    => {},
-	test        =>
+	dist =>
 	{
-		TESTS => 't/*.t t/datafiles/*.t'
-	}
+		COMPRESS => 'gzip',
+		SUFFIX   => 'gz'
+	},
+	DISTNAME  => 'Tree-Persist',
+	NAME      => 'Tree::Persist',
+	LICENSE   => 'artistic_2',
+	PL_FILES  => {},
+	PREREQ_PM =>
+	{
+		'File::Copy'           => 0.01,
+		'File::Spec'           => 0.01,
+		'Module::Runtime'      => 0.013,
+		'Tree'                 => 0.15,
+		'Scalar::Util'         => 1.10,
+		'Test::File'           => 1.10,
+		'Test::File::Cleaner'  => 0.02,
+		'Test::File::Contents' => 0.02,
+		'Test::More'           => 0.98,
+#		'Test::Pod'            => 1.45, # Make it optional. See t/pod.t
+#		'Test::Pod::Coverage'  => 1.08, # Make it optional. See t/pod.t
+		'Tree'                 => 1.00,
+	},
+	VERSION_FROM => 'lib/Tree/Persist.pm',
 );
