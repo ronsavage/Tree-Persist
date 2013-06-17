@@ -26,13 +26,20 @@
       },
       "runtime" : {
          "requires" : {
+            "DBI" : "1.627",
             "File::Copy" : "0.01",
             "File::Spec" : "0.01",
+            "File::Spec::Functions" : "0.01",
+            "File::Temp" : "0.01",
             "Module::Runtime" : "0.013",
             "Scalar::Util" : "1.1",
             "Test::File" : "1.1",
             "Test::File::Cleaner" : "0.02",
             "Test::File::Contents" : "0.02",
+            "Tree" : "1.05",
+            "XML::Parser" : "2.41",
+            "base" : "0",
+            "perl" : "5.006000",
             "strict" : "0",
             "warnings" : "0"
          }
