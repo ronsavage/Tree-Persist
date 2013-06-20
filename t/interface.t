@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 
-use File::Spec::Functions qw( catfile );
 use Test::More tests => 3;
 
 # ---------------------------------------------

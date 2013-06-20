@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 use File::Spec::Functions qw( catfile );
+use File::Temp;
 
 use Test::File;
-use Test::File::Cleaner;
 use Test::File::Contents;
 
 use Test::More;
@@ -22,9 +22,11 @@ my $CLASS = 'Tree::Persist';
 
 use_ok( $CLASS ) || Test::More->builder->BAILOUT( "Cannot load $CLASS" );
 
-my($dir_name)  = catfile( qw( t datafiles ) );
-my($file_name) = catfile( $dir_name, 'save4.xml' );
-my($cleaner)   = Test::File::Cleaner->new( $dir_name );
+# The EXLOCK option is for BSD-based systems.
+
+my $in_dir    = catfile( qw( t datafiles ) );
+my $out_dir   = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
+my $file_name = catfile( $out_dir, 'save4.xml' );
 
 {
 	file_not_exists_ok( $file_name, "$file_name file doesn't exist yet" );

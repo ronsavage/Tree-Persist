@@ -29,7 +29,7 @@ WriteMakefile
 	PL_FILES  => {},
 	PREREQ_PM =>
 	{
-		base                    => 0,
+		'base'                  => 0,
 		'DBI'                   => 1.627,
 		'File::Copy'            => 0.01,
 		'File::Spec'            => 0.01,
@@ -41,7 +41,6 @@ WriteMakefile
 		'Scalar::Util'          => 1.10,
 		'strict'                => 0,
 		'Test::File'            => 1.10,
-		'Test::File::Cleaner'   => 0.02,
 		'Test::File::Contents'  => 0.02,
 		'Test::More'            => 0.98,
 #		'Test::Pod'             => 1.45, # Make it optional. See t/pod.t

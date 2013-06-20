@@ -1,5 +1,9 @@
 Revision history for Perl distribution Tree::Persist
 
+1.06  Thu Jun 20 11:53:00 2013
+	- Replace Test::File::Cleaner with File::Temp because the t/ directory is read-only.
+		Now, a temp dir is used instead of trying and failing to write to t/.
+
 1.05  Mon Jun 17 17:13:00 2013
 	- Update pre-reqs yet again.
 

@@ -10,8 +10,8 @@ plan skip_all => "XML::Parser required for testing File plugin" if $@;
 
 plan tests => 11;
 
+use File::Temp;
 use Test::File;
-use Test::File::Cleaner;
 use Test::File::Contents;
 
 use File::Spec::Functions qw( catfile );
@@ -22,12 +22,12 @@ use_ok( $CLASS )
 
 use_ok( 'Tree' );
 
-my $dirname = catfile( qw( t datafiles ) );
+# The EXLOCK option is for BSD-based systems.
 
-my $cleaner = Test::File::Cleaner->new( $dirname );
+my $out_dir = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
 
 {
-    my $filename = catfile( $dirname, 'save1.xml' );
+    my $filename = catfile( $out_dir, 'save1.xml' );
     file_not_exists_ok( $filename, "Tree1 file doesn't exist yet" );
 
     my $tree = Tree->new( 'root' );
@@ -47,7 +47,7 @@ __END_FILE__
 }
 
 {
-    my $filename = catfile( $dirname, 'save2.xml' );
+    my $filename = catfile( $out_dir, 'save2.xml' );
     file_not_exists_ok( $filename, "Tree2 file doesn't exist yet" );
 
     my $tree = Tree->new( 'A' )->add_child(
@@ -80,7 +80,7 @@ __END_FILE__
 }
 
 {
-    my $filename = catfile( $dirname, 'save3.xml' );
+    my $filename = catfile( $out_dir, 'save3.xml' );
     file_not_exists_ok( $filename, "Tree3 file doesn't exist yet" );
 
     my $tree = Tree->new( 'A' )->add_child(

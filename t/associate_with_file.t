@@ -9,8 +9,9 @@ eval "use XML::Parser";
 plan skip_all => "XML::Parser required for testing File plugin" if $@;
 
 use File::Copy qw( cp );
+use File::Temp;
+
 use Test::File;
-use Test::File::Cleaner;
 use Test::File::Contents;
 
 use File::Spec::Functions qw( catfile );
@@ -23,14 +24,15 @@ my $CLASS = 'Tree::Persist';
 use_ok( $CLASS )
     or Test::More->builder->BAILOUT( "Cannot load $CLASS" );
 
-my $dirname = catfile( qw( t datafiles ) );
+# The EXLOCK option is for BSD-based systems.
 
-my $cleaner = Test::File::Cleaner->new( $dirname );
+my $in_dir  = catfile( qw( t datafiles ) );
+my $out_dir = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
 
 {
-    my $filename = catfile( $dirname, 'save1.xml' );
+    my $filename = catfile( $out_dir, 'save1.xml' );
 
-    cp( catfile( $dirname, 'tree1.xml' ), $filename );
+    cp( catfile( $in_dir, 'tree1.xml' ), $filename );
 
     file_exists_ok( $filename, 'Tree1 file exists' );
 

@@ -34,7 +34,6 @@
             "Module::Runtime" : "0.013",
             "Scalar::Util" : "1.1",
             "Test::File" : "1.1",
-            "Test::File::Cleaner" : "0.02",
             "Test::File::Contents" : "0.02",
             "Tree" : "1.05",
             "XML::Parser" : "2.41",

@@ -34,7 +34,6 @@
             "Module::Runtime" : "0.013",
             "Scalar::Util" : "1.1",
             "Test::File" : "1.1",
-            "Test::File::Cleaner" : "0.02",
             "Test::File::Contents" : "0.02",
             "Tree" : "1.05",
             "XML::Parser" : "2.41",
@@ -48,31 +47,31 @@
    "provides" : {
       "Tree::Persist" : {
          "file" : "lib/Tree/Persist.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       },
       "Tree::Persist::Base" : {
          "file" : "lib/Tree/Persist/Base.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       },
       "Tree::Persist::DB" : {
          "file" : "lib/Tree/Persist/DB.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       },
       "Tree::Persist::DB::SelfReferential" : {
          "file" : "lib/Tree/Persist/DB/SelfReferential.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       },
       "Tree::Persist::File" : {
          "file" : "lib/Tree/Persist/File.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       },
       "Tree::Persist::File::XML" : {
          "file" : "lib/Tree/Persist/File/XML.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       },
       "Tree::Persist::File::XMLWithSingleQuotes" : {
          "file" : "lib/Tree/Persist/File/XMLWithSingleQuotes.pm",
-         "version" : "1.05"
+         "version" : "1.06"
       }
    },
    "release_status" : "stable",
@@ -81,5 +80,5 @@
          "http://www.perlfoundation.org/artistic_license_2_0"
       ]
    },
-   "version" : "1.05"
+   "version" : "1.06"
 }
