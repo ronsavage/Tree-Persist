@@ -8,6 +8,13 @@ use Test::More;
 eval "use XML::Parser";
 plan skip_all => "XML::Parser required for testing File plugin" if $@;
 
+# The EXLOCK option is for BSD-based systems.
+
+my $in_dir  = catfile( qw( t datafiles ) );
+my $out_dir = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
+
+plan skip_all => "Temp dir is un-writable" if (! -w $out_dir);
+
 plan tests => 20;
 
 my $CLASS = 'Tree::Persist';
@@ -22,11 +29,6 @@ use Scalar::Util qw( refaddr );
 
 use Test::File;
 use Test::File::Contents;
-
-# The EXLOCK option is for BSD-based systems.
-
-my $in_dir  = catfile( qw( t datafiles ) );
-my $out_dir = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
 
 {
     my $filename = catfile( $out_dir, 'save1.xml' );

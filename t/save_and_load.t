@@ -16,16 +16,19 @@ eval "use XML::Parser";
 plan skip_all => "XML::Parser required for testing File plugin" if $@;
 plan tests    => 7;
 
+# The EXLOCK option is for BSD-based systems.
+
+my $in_dir    = catfile( qw( t datafiles ) );
+my $out_dir   = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
+
+plan skip_all => "Temp dir is un-writable" if (! -w $out_dir);
+
 use_ok( 'Tree' );
 
 my $CLASS = 'Tree::Persist';
 
 use_ok( $CLASS ) || Test::More->builder->BAILOUT( "Cannot load $CLASS" );
 
-# The EXLOCK option is for BSD-based systems.
-
-my $in_dir    = catfile( qw( t datafiles ) );
-my $out_dir   = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDIR => 1);
 my $file_name = catfile( $out_dir, 'save4.xml' );
 
 {

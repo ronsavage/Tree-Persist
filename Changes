@@ -1,5 +1,8 @@
 Revision history for Perl distribution Tree::Persist
 
+1.07  Fri Jun 21 15:35:00 2013
+	- Patch tests to allow for CPAN testers who run with an un-writable temp dir.
+
 1.06  Thu Jun 20 11:53:00 2013
 	- Replace Test::File::Cleaner with File::Temp because the t/ directory is read-only.
 		Now, a temp dir is used instead of trying and failing to write to t/.
