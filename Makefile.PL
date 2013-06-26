@@ -31,7 +31,7 @@ WriteMakefile
 	{
 		'base'                  => 0,
 		'DBI'                   => 1.627,
-		'File::Copy'            => 0.01,
+		'File::Slurp'           => 9999.19,
 		'File::Spec'            => 0.01,
 		'File::Spec::Functions' => 0.01,
 		'File::Temp'            => 0.01,

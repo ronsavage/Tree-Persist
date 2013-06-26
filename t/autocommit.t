@@ -21,7 +21,7 @@ my $CLASS = 'Tree::Persist';
 use_ok( $CLASS )
     or Test::More->builder->BAILOUT( "Cannot load $CLASS" );
 
-use File::Copy; # For copy().
+use File::Slurp; # For read_file() and write_file().
 use File::Spec::Functions qw( catfile );
 use File::Temp;
 
@@ -33,7 +33,7 @@ use Test::File::Contents;
 {
     my $filename = catfile( $out_dir, 'save1.xml' );
 
-    copy( catfile( $in_dir, 'tree1.xml' ), $filename );
+    write_file($filename, read_file(catfile($in_dir, 'tree1.xml') ) );
 
     file_exists_ok( $filename, 'Tree1 file exists' );
 
@@ -98,7 +98,7 @@ __END_FILE__
 {
     my $filename = catfile( $out_dir, 'save2.xml' );
 
-    copy( catfile( $in_dir, 'tree1.xml' ), $filename );
+    write_file($filename, read_file(catfile($in_dir, 'tree1.xml') ) );
 
     file_exists_ok( $filename, 'Tree1 file exists' );
 

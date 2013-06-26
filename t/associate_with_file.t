@@ -15,7 +15,7 @@ my $out_dir = File::Temp -> newdir('temp.XXXX', CLEANUP => 1, EXLOCK => 0, TMPDI
 
 plan skip_all => "Temp dir is un-writable" if (! -w $out_dir);
 
-use File::Copy; # For copy().
+use File::Slurp; # For read_file() and write_file().
 use File::Temp;
 
 use Test::File;
@@ -34,7 +34,7 @@ use_ok( $CLASS )
 {
     my $filename = catfile( $out_dir, 'save1.xml' );
 
-    copy( catfile( $in_dir, 'tree1.xml' ), $filename );
+    write_file($filename, read_file(catfile($in_dir, 'tree1.xml') ) );
 
     file_exists_ok( $filename, 'Tree1 file exists' );
 
