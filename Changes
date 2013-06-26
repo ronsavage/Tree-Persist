@@ -1,5 +1,9 @@
 Revision history for Perl distribution Tree::Persist
 
+1.09  Wed Jun 26 16:05:00 2013
+	- Replace File::Copy's copy with File::Slurp's write_file(), in yet another effort to fix these file
+		permission problems. Programs affected: t/associate_with_file.t and t/autocommit.t.
+
 1.08  Sat Jun 22 10:39:00 2013
 	- Switch from File::Copy's cp() to its copy(), as a presumed fix for file permission problems copying
 		test files from t/datafiles to a temp dir.
