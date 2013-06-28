@@ -1,5 +1,16 @@
 Revision history for Perl distribution Tree::Persist
 
+1.10  Fri Jun 28 10:18:00 2013
+	- Add DBD::SQLite to the pre-reqs. It is used for testing when $ENV{DBI_DSN} is not set.
+		Some CPAN Testers got syntax errors in the SQL used in t/load_from_db.t and t/save_to_db.t.
+		I assume this is because old versions of DBD::SQLite (i.e. SQLite) accepted:
+			insert into t (id, x) values (1, 2)
+		but not
+			insert into t (id, x) values (1, 2), (3, 4).
+	- Expand the FAQ slightly, regarding usage of DBD::SQLite.
+	- One CPAN Tester is still getting a 'Permission denied' error trying to unlink a temporary file.
+		I do not have a fix for this problem (yet).
+
 1.09  Wed Jun 26 16:05:00 2013
 	- Replace File::Copy's copy with File::Slurp's write_file(), in yet another effort to fix these file
 		permission problems. Programs affected: t/associate_with_file.t and t/autocommit.t.

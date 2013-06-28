@@ -9,7 +9,7 @@ use Module::Runtime;
 
 use Scalar::Util qw( blessed refaddr );
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 my(%defaults) =
 (

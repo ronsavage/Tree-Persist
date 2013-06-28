@@ -26,6 +26,7 @@
       },
       "runtime" : {
          "requires" : {
+            "DBD::SQLite" : "1.39",
             "DBI" : "1.627",
             "File::Slurp" : "9999.19",
             "File::Spec" : "0.01",
@@ -38,7 +39,6 @@
             "Tree" : "1.05",
             "XML::Parser" : "2.41",
             "base" : "0",
-            "perl" : "5.006000",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -47,31 +47,31 @@
    "provides" : {
       "Tree::Persist" : {
          "file" : "lib/Tree/Persist.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       },
       "Tree::Persist::Base" : {
          "file" : "lib/Tree/Persist/Base.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       },
       "Tree::Persist::DB" : {
          "file" : "lib/Tree/Persist/DB.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       },
       "Tree::Persist::DB::SelfReferential" : {
          "file" : "lib/Tree/Persist/DB/SelfReferential.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       },
       "Tree::Persist::File" : {
          "file" : "lib/Tree/Persist/File.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       },
       "Tree::Persist::File::XML" : {
          "file" : "lib/Tree/Persist/File/XML.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       },
       "Tree::Persist::File::XMLWithSingleQuotes" : {
          "file" : "lib/Tree/Persist/File/XMLWithSingleQuotes.pm",
-         "version" : "1.09"
+         "version" : "1.10"
       }
    },
    "release_status" : "stable",
@@ -80,5 +80,5 @@
          "http://www.perlfoundation.org/artistic_license_2_0"
       ]
    },
-   "version" : "1.09"
+   "version" : "1.10"
 }

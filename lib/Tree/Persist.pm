@@ -5,7 +5,7 @@ use warnings;
 
 use Module::Runtime;
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 # ----------------------------------------------
 
@@ -216,8 +216,8 @@ after C<rollback()>.
 The tests default to using $ENV{DBI_DSN}, $ENV{DBI_USER} and $ENV{DBI_PASS}, so you can set
 them to anything.
 
-If $ENV{DBI_DSN} is empty, the code uses DBD::SQLite for the database. In this case, a temporary
-directory is used for each test.
+If $ENV{DBI_DSN} is empty, tests use DBD::SQLite for the database. In this case, a temporary
+directory is used for each test. This is why DBD::SQLite is listed as a pre-requisite.
 
 =head1 CODE COVERAGE
 
