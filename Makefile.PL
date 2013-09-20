@@ -13,7 +13,7 @@ WriteMakefile
 	) : (),
 	clean =>
 	{
-		FILES => 'blib/* Makefile MANIFEST Lingua-EN-StopWordList-*'
+		FILES => 'blib/* Makefile MANIFEST Tree-Persist-*'
 	},
 	dist =>
 	{
