@@ -60,7 +60,7 @@ __END__
 
 =head1 NAME
 
-Tree::Persist - A transparent persistence layer for L<Tree> and its children
+Tree::Persist - A transparent persistence layer for Tree and its children
 
 =head1 SYNOPSIS
 
