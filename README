@@ -9,8 +9,8 @@ ftp://ftp.info-zip.org/pub/infozip/
 
 1 Installing from a Unix-like distro
 ------------------------------------
-shell>gunzip Tree-Persist-1.01.tgz
-shell>tar mxvf Tree-Persist-1.01.tar
+shell>gunzip Tree-Persist-1.10.tgz
+shell>tar mxvf Tree-Persist-1.10.tar
 
 On Unix-like systems, assuming you have installed Module::Build V 0.25+:
 
@@ -43,7 +43,7 @@ Run Persist.pm through your favourite pod2html translator.
 
 2 Installing from an ActiveState distro
 ---------------------------------------
-shell>unzip Tree-Persist-1.01.zip
+shell>unzip Tree-Persist-1.10.zip
 shell>ppm install --location=. Tree-Persist
-shell>del Tree-Persist-1.01.ppd
-shell>del PPM-Tree-Persist-1.01.tar.gz
+shell>del Tree-Persist-1.10.ppd
+shell>del PPM-Tree-Persist-1.10.tar.gz
