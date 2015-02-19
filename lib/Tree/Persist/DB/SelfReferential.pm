@@ -195,7 +195,7 @@ sub _build_sql
 	my(%sql)  =
 	(
 		next_id => <<"__END_SQL__",
-SELECT IFNULL(MAX($self->{_id_col}),0) + 1
+SELECT coalesce(MAX($self->{_id_col}),0) + 1
   FROM $self->{_table}
 __END_SQL__
 		set_value => <<"__END_SQL__",
