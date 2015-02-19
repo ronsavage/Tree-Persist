@@ -53,7 +53,7 @@ $dbh->do( <<"__END_SQL__" );
 INSERT INTO tree_007
     ( id, parent_id, value, class )
 VALUES
-    ( 1, NULL, "root", "Tree" )
+    ( 1, NULL, 'root', 'Tree' )
 __END_SQL__
 
 sub get_values {
