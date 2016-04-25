@@ -5,7 +5,7 @@ use warnings;
 
 use Module::Runtime;
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 
 # ----------------------------------------------
 
@@ -239,6 +239,10 @@ L<Devel::Cover> report on this module's V 0.99 test suite.
 =head1 SUPPORT
 
 Email Ron Savage at the address below.
+
+=head1 REPOSITORY
+
+L<https://github.com/ronsavage/Tree-Persist>.
 
 =head1 AUTHORS
 

@@ -1,6 +1,19 @@
 Revision history for Perl distribution Tree::Persist
 
-1.10  Fri Jun 28 10:18:00 2013
+1.11  2016-04-25T09:26:00
+	- No code changes.
+	- Add LICENSE file.
+	- Remove Build.PL.
+	- Update MANIFEST.SKIP.
+	- Add github repo to Makefile.PL and docs.
+	- Fix my licence (sic) mess so all references are to Perl. This involves edits to Makefile.PL
+		and LICENSE. See RT#113949. Thanx Kent Fredric.
+	- Fix Makefile.PL so modules only used for testing are in TEST_REQUIRES and not PREREQ_PM.
+		See RT#113948. Thanx Kent Fredric.
+	- Fix README so it more-or-less conforms to the Perl Foundation's guidelines at
+		http://www.perlfoundation.org/cpan_licensing_guidelines.
+
+1.10  2013-06-28T10:18:00
 	- Add DBD::SQLite to the pre-reqs. It is used for testing when $ENV{DBI_DSN} is not set.
 		Some CPAN Testers got syntax errors in the SQL used in t/load_from_db.t and t/save_to_db.t.
 		I assume this is because old versions of DBD::SQLite (i.e. SQLite) accepted:
@@ -11,28 +24,28 @@ Revision history for Perl distribution Tree::Persist
 	- One CPAN Tester is still getting a 'Permission denied' error trying to unlink a temporary file.
 		I do not have a fix for this problem (yet).
 
-1.09  Wed Jun 26 16:05:00 2013
+1.09  2013-06-26T16:05:00
 	- Replace File::Copy's copy with File::Slurp's write_file(), in yet another effort to fix these file
 		permission problems. Programs affected: t/associate_with_file.t and t/autocommit.t.
 
-1.08  Sat Jun 22 10:39:00 2013
+1.08  2013-06-22T10:39:00
 	- Switch from File::Copy's cp() to its copy(), as a presumed fix for file permission problems copying
 		test files from t/datafiles to a temp dir.
 
-1.07  Fri Jun 21 15:35:00 2013
+1.07  2013-06-21T15:35:00
 	- Patch tests to allow for CPAN testers who run with an un-writable temp dir.
 
-1.06  Thu Jun 20 11:53:00 2013
+1.06  2013-06-20T11:53:00
 	- Replace Test::File::Cleaner with File::Temp because the t/ directory is read-only.
 		Now, a temp dir is used instead of trying and failing to write to t/.
 
-1.05  Mon Jun 17 17:13:00 2013
+1.05  2013-06-17T17:13:00
 	- Update pre-reqs yet again.
 
-1.04  Thu Jun 13 12:50:00 2013
+1.04  2013-06-13T12:50:00
 	- Add Module::Runtime to pre-reqs in Build.PL and Makefile.PL. This is a bad oversight on my part.
 
-1.03  Tue Jun 11 17:04:00 2013
+1.03  2013-06-11T17:04:00
 	- Fix some tests which had stopped working.
 	- Implement user-specified class names for deflation/inflation of objects.
 		This was requested in a module review: http://cpanratings.perl.org/dist/Tree-Persist#10829.
@@ -44,13 +57,13 @@ Revision history for Perl distribution Tree::Persist
 	- Update PODs.
 	- Rename test files from \d\d\d_*.t to *.t.
 
-1.02  Thu Nov  8 12:38:00 2012
+1.02  2012-11-08T12:38:00
 	- No code changes.
 	- For pre-reqs such as strict, warnings, etc, which ship with Perl, set the version # to 0.
 		Reported as RT#80663 by Father Chrysostomos for Tree::DAG_Node.
 	- Add README.
 
-1.01  Thu Oct  4 10:27:00 2012
+1.01  2012-10-04T10:27:00
 	- Ron Savage is now co-maint.
 	- Re-write MySQL-specific code, which is only used in the tests.
 	- Rename Changes to CHANGES.
@@ -70,5 +83,5 @@ Revision history for Perl distribution Tree::Persist
 		They are decoded by XML::Parser when the file is read back in.
 	- Add scripts/xml.demo.pl and scripts/store.xml.
 
-0.99  Mon Oct 31 10:30:00 2005
+0.99  2005-10-31T10:30:00
   - Split out from Forest
