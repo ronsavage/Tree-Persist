@@ -1,6 +1,7 @@
 Revision history for Perl distribution Tree::Persist
 
 1.12  2016-04-27T17:35:00
+	- No code changes.
 	- Adopt workflow techniques suggested by Kent Fredric. This means a cleaner workdir and a
 		much more reliable dist. The latter now has auto-generated MANIFEST and META.* files.
 
