@@ -23,6 +23,7 @@ my(%params) =
 	DISTNAME  => 'Tree-Persist',
 	NAME      => 'Tree::Persist',
 	LICENSE   => 'artistic_2',
+        MIN_PERL_VERSION => 5.006,
 	PL_FILES  => {},
 	PREREQ_PM =>
 	{
