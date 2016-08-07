@@ -20,11 +20,12 @@ my(%params) =
 		COMPRESS => 'gzip',
 		SUFFIX   => 'gz'
 	},
-	DISTNAME  => 'Tree-Persist',
-	NAME      => 'Tree::Persist',
-	LICENSE   => 'artistic_2',
-	PL_FILES  => {},
-	PREREQ_PM =>
+	DISTNAME			=> 'Tree-Persist',
+	NAME				=> 'Tree::Persist',
+	LICENSE				=> 'artistic_2',
+	MIN_PERL_VERSION	=> 5.006,
+	PL_FILES			=> {},
+	PREREQ_PM			=>
 	{
 		'base'				=> 0,
 		'Module::Runtime'	=> 0.013,
