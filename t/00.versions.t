@@ -5,14 +5,16 @@ use warnings;
 
 # I tried 'require'-ing modules but that did not work.
 
-use Config::Tiny; # For the version #.
+use Tree::Persist; # For the version #.
 
 use Test::More;
 
-use File::Spec;
-use File::Temp;
+use base;
+use Module::Runtime;
+use Scalar::Util;
 use strict;
-use utf8;
+use warnings;
+use XML::Parser;
 
 # ----------------------
 
@@ -20,13 +22,15 @@ pass('All external modules loaded');
 
 my(@modules) = qw
 /
-	File::Spec
-	File::Temp
+	base
+	Module::Runtime
+	Scalar::Util
 	strict
-	utf8
+	warnings
+	XML::Parser
 /;
 
-diag "Testing Config::Tiny V $Config::Tiny::VERSION";
+diag "Testing Tree::Persist V $Tree::Persist::VERSION";
 
 for my $module (@modules)
 {
