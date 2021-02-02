@@ -5,6 +5,9 @@ Revision history for Perl distribution Tree::Persist
 	- Some tests 'use t::test.pm', so for them add "use lib '.';" so when newer Perls default to
 		not having '.' in @INC, the code will still find t/tests.pm.
 	- Lower pre-req for Test::More to V 1.001002.
+	- Add t/00.*.
+	- Update Makefile.PL and POD to change RT to github.
+	- Change license in Makefile.PL from artistic_2 to perl.
 
 1.13  2016-05-04T08;15:00
 	- Correct physical address of Free Software Foundation in LICENSE file. See RT#114149.

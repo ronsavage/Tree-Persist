@@ -8,8 +8,8 @@ my(%params) =
 (
 	($] ge '5.005') ?
 	(
-		AUTHOR   => 'Rob Kinyin <rkinyon@cpan.org>',
-		ABSTRACT => 'A transparent persistence layer for Tree and its children',
+		AUTHOR		=> 'Rob Kinyin <rkinyon@cpan.org>',
+		ABSTRACT	=> 'A transparent persistence layer for Tree and its children',
 	) : (),
 	clean =>
 	{
@@ -17,12 +17,12 @@ my(%params) =
 	},
 	dist =>
 	{
-		COMPRESS => 'gzip',
-		SUFFIX   => 'gz'
+		COMPRESS	=> 'gzip',
+		SUFFIX		=> 'gz'
 	},
 	DISTNAME			=> 'Tree-Persist',
+	LICENSE				=> 'perl',
 	NAME				=> 'Tree::Persist',
-	LICENSE				=> 'artistic_2',
 	MIN_PERL_VERSION	=> 5.006,
 	PL_FILES			=> {},
 	PREREQ_PM			=>
