@@ -38,10 +38,13 @@ my(%params) =
 	{
 		'DBD::SQLite'			=> 1.39,
 		'DBI'					=> 1.627,
+		'Exporter'				=> 5.78,
+		'ExtUtils::MakeMaker'	=> 7.70,
 		'File::Slurp'			=> 9999.19,
 		'File::Spec'			=> 0.01,
 		'File::Spec::Functions'	=> 0.01,
 		'File::Temp'			=> 0.01,
+		't::tests'				=> 0.01,
 		'Test::File'			=> 1.10,
 		'Test::File::Contents'	=> 0.02,
 		'Test::More'			=> 1.001002,

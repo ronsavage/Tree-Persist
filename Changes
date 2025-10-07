@@ -3,6 +3,7 @@ Revision history for Perl distribution Tree::Persist
 1.15  2025-10-07T13:56:00
 	- Clean up this Changes file where it used to refer to cpanratings.perl.org,
 		but this site no longer exists.
+	- Update Makefile.PL.
 
 1.14  2016-08-07T13:10:00
 	- Add MIN_PERL_VERSION to Makefile.PL. Such a change is not worth a new release. Push to github.
