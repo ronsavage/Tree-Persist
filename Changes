@@ -2,6 +2,7 @@ Revision history for Perl distribution Tree::Persist
 
 1.16  2025-10-14T08:18:41
 	- Remove t::tests from Makefile.PL since it causes problems for some CPAN testers.
+	- Thanx to blb8 for the report
 
 1.15  2025-10-07T13:56:00
 	- Clean up this Changes file where it used to refer to cpanratings.perl.org,
